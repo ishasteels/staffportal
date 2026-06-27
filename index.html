@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-  <meta name="theme-color" content="#B91C1C">
+  <meta name="theme-color" content="#141414">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -27,85 +27,88 @@
                T=Teal, I=Info, A=Accent, l=light bg version
 ══════════════════════════════════════════════════════════════════════ */
     :root {
-      /* ── ISE Brand Palette ── */
-      --P: #B91C1C;
-      --Pd: #DC2626;
-      --Pl: rgba(185, 28, 28, .08);
-      --Pm: rgba(185, 28, 28, .16);
-      --G: #16A34A;
-      --Gl: rgba(22, 163, 74, .10);
-      --R: #DC2626;
-      --Rl: rgba(220, 38, 38, .10);
-      --O: #D97706;
-      --Ol: rgba(217, 119, 6, .10);
-      --V: #6D28D9;
-      --Vl: rgba(109, 40, 217, .10);
-      --T: #0F766E;
-      --Tl: rgba(15, 118, 110, .10);
-      --I: #0284C7;
-      --Il: rgba(2, 132, 199, .10);
-      --A: #E57373;
-      --Al: rgba(229, 115, 115, .10);
+      /* ══════════════════════════════════════════
+         ISE Staff Portal — Design System
+         Palette: Black · Grey · Light Red
+         ══════════════════════════════════════════ */
 
-      /* ── Surfaces — warm-white, steel-clean ── */
-      --bg: #F4F5F7;
-      --sur: #FFFFFF;
-      --sur2: #FAFAFA;
-      --sur3: #F0F1F3;
-      --bdr: #E8EAED;
-      --bdr2: #D1D5DB;
+      /* PRIMARY — Light Red (energetic, modern, ISE brand) */
+      --P:  #E53935;          /* main red — buttons, active states */
+      --Pd: #F44336;          /* lighter red — hover, highlights */
+      --Pl: rgba(229,57,53,.08);   /* tint bg — selected rows, pills */
+      --Pm: rgba(229,57,53,.15);   /* medium tint — hover overlays */
 
-      /* ── Text — charcoal hierarchy ── */
-      --tx: #111827;
-      --tx2: #374151;
-      --tx3: #9CA3AF;
-      --tx4: #D1D5DB;
+      /* STATUS COLORS */
+      --G:  #2E7D32;
+      --Gl: rgba(46,125,50,.10);
+      --R:  #C62828;
+      --Rl: rgba(198,40,40,.10);
+      --O:  #E65100;
+      --Ol: rgba(230,81,0,.10);
+      --V:  #6A1B9A;
+      --Vl: rgba(106,27,154,.10);
+      --T:  #00695C;
+      --Tl: rgba(0,105,92,.10);
+      --I:  #0277BD;
+      --Il: rgba(2,119,189,.10);
+      --A:  #FF6B6B;          /* soft coral red — accent chips */
+      --Al: rgba(255,107,107,.10);
 
-      /* ── Sidebar — crisp white with red top accent ── */
-      --sb: #FFFFFF;
-      --sb2: #FDF7F7;
-      --sbt: #111827;
-      --sbt2: #6B7280;
+      /* ── SURFACES — pure grey-white scale ── */
+      --bg:   #F2F2F2;        /* page background — neutral light grey */
+      --sur:  #FFFFFF;        /* cards, panels — pure white */
+      --sur2: #F7F7F7;        /* alternate rows, inner sections */
+      --sur3: #EFEFEF;        /* subtle inset bg */
+      --bdr:  #E4E4E4;        /* default border */
+      --bdr2: #CACACA;        /* stronger border */
 
-      /* Layout */
-      --sbw: 258px;
+      /* ── TEXT — rich black hierarchy ── */
+      --tx:  #111111;         /* headings, primary text */
+      --tx2: #444444;         /* body, labels */
+      --tx3: #888888;         /* placeholders, captions */
+      --tx4: #C8C8C8;         /* disabled, very subtle */
+
+      /* ── SIDEBAR — deep black (premium, bold) ── */
+      --sb:  #141414;         /* sidebar background */
+      --sb2: #1E1E1E;         /* sidebar hover / section bg */
+      --sbt: #F0F0F0;         /* sidebar text — near white */
+      --sbt2:#888888;         /* sidebar muted text */
+
+      /* ── LAYOUT ── */
+      --sbw: 256px;
       --tbh: 56px;
-      --r: 12px;
-      --r2: 8px;
-      --r3: 6px;
+      --r:   10px;
+      --r2:  7px;
+      --r3:  5px;
 
-      /* Shadows — soft, clean */
-      --shad: 0 1px 3px rgba(17,24,39,.05), 0 1px 2px rgba(17,24,39,.04);
-      --shad2: 0 4px 16px rgba(17,24,39,.08), 0 2px 6px rgba(17,24,39,.04);
-      --shad3: 0 16px 48px rgba(17,24,39,.12), 0 4px 14px rgba(17,24,39,.06);
+      /* ── SHADOWS — crisp, grounded ── */
+      --shad:  0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.05);
+      --shad2: 0 4px 16px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.06);
+      --shad3: 0 16px 48px rgba(0,0,0,.14), 0 4px 14px rgba(0,0,0,.08);
 
       /* Z-layers */
-      --z-drop: 200;
-      --z-modal: 900;
-      --z-toast: 9000;
-      --z-ntf: 800;
-      --z-sb: 100;
+      --z-drop: 200; --z-modal: 900; --z-toast: 9000; --z-ntf: 800; --z-sb: 100;
     }
 
     /* ── Dark mode overrides ─────────────────────────────── */
     body.dark {
-      --bg: #111214;
-      --sur: #1C1D20;
-      --sur2: #242529;
-      --sur3: #2A2B30;
-      --bdr: #2E3035;
-      --bdr2: #3A3C42;
-      --tx: #F9FAFB;
-      --tx2: #D1D5DB;
-      --tx3: #6B7280;
-      --tx4: #374151;
-      --sb: #141517;
-      --sb2: #1C1D20;
-      --sbt: #F3F4F6;
-      --sbt2: #9CA3AF;
-      --shad: 0 2px 16px rgba(0,0,0,.4);
-      --shad2: 0 8px 32px rgba(0,0,0,.5);
-      --shad3: 0 24px 64px rgba(0,0,0,.7);
+      --bg:   #0A0A0A;
+      --sur:  #141414;
+      --sur2: #1C1C1C;
+      --sur3: #242424;
+      --bdr:  #2A2A2A;
+      --bdr2: #3D3D3D;
+      --tx:   #F0F0F0;
+      --tx2:  #B8B8B8;
+      --tx3:  #6B6B6B;
+      --tx4:  #3D3D3D;
+      --sb:   #0A0A0A;
+      --sb2:  #141414;
+      --sbt:  #F0F0F0;
+      --sbt2: #888888;
+      --shad:  0 2px 16px rgba(0,0,0,.50);
+      --shad2: 0 8px 32px rgba(0,0,0,.60);
+      --shad3: 0 24px 64px rgba(0,0,0,.75);
     }
 
     /* ══════════════════════════════════════════════════════════════════════
@@ -267,9 +270,9 @@
       align-items: center;
       justify-content: center;
       background:
-        radial-gradient(ellipse at 75% 15%, rgba(185,28,28,.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 15% 85%, rgba(185,28,28,.10) 0%, transparent 55%),
-        linear-gradient(145deg, #1A1A2E 0%, #16213E 40%, #1A1A2E 100%);
+        radial-gradient(ellipse at 65% 10%, rgba(229,57,53,.20) 0%, transparent 50%),
+        radial-gradient(ellipse at 15% 88%, rgba(229,57,53,.12) 0%, transparent 55%),
+        linear-gradient(160deg, #0A0A0A 0%, #1A0808 50%, #0F0F0F 100%);
       position: relative;
       overflow: hidden;
     }
@@ -286,18 +289,18 @@
     #sLogin::before {
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(185,28,28,.10) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(229,57,53,.12) 0%, transparent 70%);
       top: -200px;
       right: -200px;
       animation: float1 10s ease-in-out infinite;
     }
 
     #sLogin::after {
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(185,28,28,.07) 0%, transparent 70%);
-      bottom: -120px;
-      left: -120px;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(229,57,53,.08) 0%, transparent 70%);
+      bottom: -130px;
+      left: -130px;
       animation: float2 14s ease-in-out infinite;
     }
 
@@ -338,33 +341,33 @@
 
     .lbox {
       background: #FFFFFF;
-      border-radius: 20px;
-      padding: 48px 44px;
+      border-radius: 14px;
+      padding: 44px 40px;
       width: 100%;
-      max-width: 440px;
+      max-width: 420px;
       box-shadow:
-        0 2px 8px rgba(0,0,0,.06),
-        0 24px 72px rgba(0,0,0,.30),
-        0 0 0 1px rgba(255,255,255,.15);
+        0 4px 24px rgba(0,0,0,.18),
+        0 32px 80px rgba(0,0,0,.40);
       position: relative;
       z-index: 10;
       animation: pop .42s cubic-bezier(.34,1.2,.64,1) both;
-      border: 1px solid rgba(255,255,255,.08);
+      border-top: 4px solid #E53935;
     }
-    /* Refined red accent line at top of login box */
+    /* Glow behind login card */
     .lbox::before {
       content: '';
       position: absolute;
-      top: 0; left: 40px; right: 40px;
-      height: 3px;
-      border-radius: 0 0 3px 3px;
-      background: linear-gradient(90deg, #B91C1C 0%, #DC2626 50%, #B91C1C 100%);
-      z-index: 1;
+      inset: -1px;
+      border-radius: 15px;
+      background: transparent;
+      box-shadow: 0 0 50px rgba(229,57,53,.18);
+      z-index: -1;
+      pointer-events: none;
     }
 
     body.dark .lbox {
-      background: #1C1D20;
-      border-color: rgba(255,255,255,.06);
+      background: #1A1A1A;
+      border-top-color: #E53935;
     }
 
     .l-logo-wrap {
@@ -465,7 +468,7 @@
       font-weight: 700;
       border: none;
       border-radius: 11px;
-      background: linear-gradient(135deg, var(--P), var(--Pd));
+      background: linear-gradient(135deg, #E53935, #F44336);
       color: #fff;
       cursor: pointer;
       display: flex;
@@ -473,14 +476,14 @@
       justify-content: center;
       gap: 9px;
       margin-top: 6px;
-      box-shadow: 0 4px 16px rgba(185, 28, 28, .25);
+      box-shadow: 0 4px 14px rgba(229,57,53,.30);
       transition: all .2s;
       font-family: inherit;
     }
 
     .l-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(185, 28, 28, .32);
+      box-shadow: 0 6px 20px rgba(229,57,53,.36);
     }
 
     .l-btn:active {
@@ -826,8 +829,8 @@
       width: var(--sbw);
       min-width: var(--sbw);
       background: var(--sb);
-      border-right: 1px solid var(--bdr);
-      box-shadow: 2px 0 16px rgba(13,27,42,.04);
+      border-right: 1px solid rgba(255,255,255,.05);
+      box-shadow: 2px 0 24px rgba(0,0,0,.35);
       display: flex;
       flex-direction: column;
       height: 100vh;
@@ -838,11 +841,11 @@
       transition: width .25s cubic-bezier(.4, 0, .2, 1),
         transform .25s cubic-bezier(.4, 0, .2, 1);
       scrollbar-width: thin;
-      scrollbar-color: rgba(15, 23, 42, .1) transparent;
+      scrollbar-color: rgba(255,255,255,.08) transparent;
     }
 
     .sb::-webkit-scrollbar-thumb {
-      background: rgba(15, 23, 42, .12);
+      background: rgba(255,255,255,.10);
       border-radius: 2px;
     }
 
@@ -866,9 +869,9 @@
     /* Sidebar Header */
     .sb-hd {
       padding: 16px 14px 14px;
-      border-bottom: 1px solid var(--bdr);
+      border-bottom: 1px solid rgba(255,255,255,.06);
       flex-shrink: 0;
-      border-top: 3px solid var(--P);
+      border-top: 3px solid #E53935;
     }
 
     .sb-brand {
@@ -889,14 +892,14 @@
     .sb-brand-txt {
       font-size: 15px;
       font-weight: 800;
-      color: var(--tx);
+      color: var(--sbt);
       letter-spacing: -.3px;
     }
 
     .sb-brand-ver {
       font-size: 9px;
       font-weight: 700;
-      color: var(--Pd);
+      color: rgba(255,255,255,.4);
       text-transform: uppercase;
       letter-spacing: .5px;
       margin-top: 1px;
@@ -909,15 +912,15 @@
       gap: 11px;
       padding: 10px 12px;
       border-radius: var(--r2);
-      background: var(--sur);
+      background: rgba(255,255,255,.05);
       cursor: pointer;
       transition: all .15s;
-      border: 1px solid var(--bdr);
+      border: 1px solid rgba(255,255,255,.07);
     }
 
     .sb-prof:hover {
-      background: var(--sur2);
-      border-color: var(--bdr2);
+      background: rgba(229,57,53,.12);
+      border-color: rgba(229,57,53,.25);
     }
 
     body.dark .sb-prof {
@@ -942,7 +945,7 @@
       font-size: 14px;
       color: #fff;
       flex-shrink: 0;
-      box-shadow: 0 2px 10px rgba(0, 95, 115, .45);
+      box-shadow: 0 2px 10px rgba(229,57,53,.45);
       overflow: hidden;
       position: relative;
     }
@@ -1005,7 +1008,7 @@
     .nv-section-label {
       font-size: 9.5px;
       font-weight: 800;
-      color: var(--tx3);
+      color: rgba(255,255,255,.30);
       text-transform: uppercase;
       letter-spacing: 1px;
       padding: 8px 12px 4px;
@@ -1030,13 +1033,13 @@
     }
 
     .nv:hover {
-      background: rgba(0, 95, 115, .08);
-      color: var(--tx);
+      background: rgba(255,255,255,.08);
+      color: #FFFFFF;
     }
 
     .nv.on {
-      background: rgba(185, 28, 28, .08);
-      color: var(--P);
+      background: rgba(229,57,53,.18);
+      color: #FFFFFF;
       font-weight: 700;
     }
 
@@ -1048,7 +1051,7 @@
       transform: translateY(-50%);
       width: 3px;
       height: 20px;
-      background: var(--Pd);
+      background: #E53935;
       border-radius: 0 3px 3px 0;
     }
 
@@ -1132,7 +1135,7 @@
     }
 
     body.dark .nv.on {
-      background: rgba(0, 95, 115, .22);
+      background: rgba(229,57,53,.22);
       color: #7dd3fc;
     }
 
@@ -1186,7 +1189,7 @@
     .topbar {
       height: var(--tbh);
       background: #FFFFFF;
-      border-bottom: 1px solid var(--bdr);
+      border-bottom: 1px solid #E4E4E4;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1195,7 +1198,7 @@
       gap: 12px;
       position: relative;
       z-index: 50;
-      box-shadow: 0 1px 0 rgba(17,24,39,.04);
+      box-shadow: 0 1px 6px rgba(15,25,35,.05);
     }
 
     .tb-left {
@@ -3014,7 +3017,7 @@
       height: 60px;
       border-radius: 50%;
       margin: 0 auto 14px;
-      background: linear-gradient(135deg, var(--P), var(--Pd));
+      background: linear-gradient(135deg, #E53935, #F44336);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -3022,7 +3025,7 @@
       font-weight: 900;
       color: #fff;
       overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0, 95, 115, .3);
+      box-shadow: 0 4px 16px rgba(229,57,53,.3);
     }
 
     .emp-card .ec-ava img {
@@ -3100,7 +3103,7 @@
       width: 76px;
       height: 76px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--P), var(--Pd));
+      background: linear-gradient(135deg, #E53935, #F44336);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -5037,8 +5040,8 @@
        SIDEBAR — glowing left accent, hover aura
     ══════════════════════════════════════════ */
     .sb {
-      border-right: 1px solid var(--bdr);
-      box-shadow: 2px 0 16px rgba(13,27,42,.04);
+      border-right: 1px solid rgba(255,255,255,.05);
+      box-shadow: 2px 0 24px rgba(0,0,0,.35);
     }
     .sb-hd { border-bottom-color: var(--bdr); }
 
@@ -5065,7 +5068,7 @@
       box-shadow: 2px 0 8px rgba(0,95,115,.3);
     }
     /* Nav icon glow on active */
-    .nv.on i { color: var(--Pd); filter: drop-shadow(0 0 4px rgba(185,28,28,.35)); }
+    .nv.on i { color: #FF6B6B; }
 
     /* User profile card in sidebar */
     .sb-prof {
@@ -5464,7 +5467,7 @@
       transition: all .2s cubic-bezier(.34,1.4,.64,1);
     }
     .mob-nav-item.active .mob-nav-pill {
-      background: linear-gradient(135deg, var(--Pl), rgba(185,28,28,.10));
+      background: linear-gradient(135deg, rgba(229,57,53,.12), rgba(185,28,28,.10));
       box-shadow: 0 2px 10px rgba(0,95,115,.15);
     }
     .mob-nav-item.active i { color: var(--P); }
@@ -5493,7 +5496,7 @@
     body.dark .kpi { border-color: rgba(51,65,85,.6); }
     body.dark .topbar { box-shadow: 0 1px 0 rgba(0,0,0,.3), 0 4px 20px rgba(0,0,0,.2); }
     body.dark .nv:hover { background: linear-gradient(90deg, rgba(0,95,115,.15) 0%, transparent 100%); }
-    body.dark .nv.on   { background: linear-gradient(90deg, rgba(185,28,28,.18) 0%, rgba(185,28,28,.05) 100%); }
+    body.dark .nv.on   { background: rgba(229,57,53,.18); }
     body.dark #toast   { box-shadow: 0 8px 40px rgba(0,0,0,.4) !important; }
 
     /* ── Topbar title transition ── */
@@ -5583,7 +5586,7 @@
   <!-- ═══════════════════════════════════════════════════════════
      LOGIN SCREEN
 ═══════════════════════════════════════════════════════════ -->
-  <div class="scr on" id="sLogin" style="background:linear-gradient(145deg,#1A1A2E 0%,#16213E 35%,#1f2640 60%,#243050 85%,#1A1A2E 100%)">
+  <div class="scr on" id="sLogin" style="background:linear-gradient(155deg,#0A0A0A 0%,#1A0808 45%,#0F0F0F 100%)">
     <div class="lbox">
       <div class="l-logo-wrap">
         <img src="https://ishasteels.com/assets/images/logo.png" alt="ISE Logo"
@@ -5624,7 +5627,7 @@
 
   <!-- ── SPLASH LOADER — shown during getAllData, hidden once data arrives ── -->
   <div id="fkSplash" style="display:none;position:fixed;inset:0;z-index:9999;
-    background:linear-gradient(150deg,#B91C1C 0%,#DC2626 55%,#EF4444 100%);
+    background:linear-gradient(150deg,#141414 0%,#2A2A2A 55%,#1A1A1A 100%);
     flex-direction:column;align-items:center;justify-content:center;gap:0">
     <div style="animation:splashPop .5s cubic-bezier(.34,1.56,.64,1) both;display:flex;flex-direction:column;align-items:center;gap:20px">
       <img src="https://ishasteels.com/assets/images/logo.png" alt="ISE"
@@ -5660,7 +5663,7 @@
             onerror="this.style.display='none'">
           <div>
             <div class="sb-brand-txt">Isha Steel</div>
-            <div class="sb-brand-ver">Portal v3.0</div>
+            <div class="sb-brand-ver">Portal v1.0</div>
           </div>
         </div>
         <div class="sb-prof" onclick="_loadV('profile')">
@@ -6500,7 +6503,7 @@
        JSONP was failing: /exec redirects to echo endpoint (302)
        fetch POST works correctly with GAS doPost
     ══════════════════════════════════════════════════════════ */
-    var GAS_URL = 'https://script.google.com/macros/s/AKfycbwAI0AtdINPtLp5l_4gah-rUu4Yd6c6as8YlLQawKcjtKBnitnhs9hR9sDEWhWQSlw7bA/exec';
+    var GAS_URL = 'https://script.google.com/macros/s/AKfycbya1ul7Jh_POaFHYJLJszVtcomiXmldSBKbwMJR5vIY5q6Vl2GJRlkMJniDNqBWEjN2/exec';
     var _TOKEN  = '';
 
 function _gas(fn, args, onOk, onErr) {
@@ -11587,7 +11590,7 @@ function _loadSetupTasks() {
     ══════════════════════════════════════════════════════════ */
     function _avatarGradient(name) {
       var palette = [
-        ['#B91C1C', '#DC2626'], ['#2F9E44', '#40C057'], ['#7048E8', '#9775FA'],
+        ['#E53935', '#F44336'], ['#2F9E44', '#40C057'], ['#7048E8', '#9775FA'],
         ['#D97706', '#F59E0B'], ['#E03131', '#F03E3E'], ['#0D9488', '#14B8A6'],
         ['#0EA5E9', '#38BDF8'], ['#DC2626', '#EF4444'], ['#7C3AED', '#8B5CF6']
       ];

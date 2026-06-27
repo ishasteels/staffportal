@@ -5,8 +5,8 @@
   "start_url": "./index.html?pwa=1",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#005F73",
-  "theme_color": "#005F73",
+  "background_color": "#B91C1C",
+  "theme_color": "#B91C1C",
   "lang": "en-IN",
   "scope": "./",
   "icons": [

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-  <meta name="theme-color" content="#1C1917">
+  <meta name="theme-color" content="#D32F2F">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -28,80 +28,77 @@
 ══════════════════════════════════════════════════════════════════════ */
     :root {
       /* ══════════════════════════════════════════════════════
-         ISE Staff Portal — Rose Steel Theme
-         ══════════════════════════════════════════════════════
-         Primary: Rose Red variants  #C0392B → #E8574A → #FFEDE8
-         Neutral: Warm slate/cream   #2C2C2C → #F9F5F4 → #FFFFFF
-         Accent:  Warm amber         #E67E22  (badges, highlights)
-      ══════════════════════════════════════════════════════ */
+         ISE Staff Portal — "Silver & Rose" Theme
+         Logo colors: Red #D32F2F | Silver-Grey #9E9E9E | White
+         Light variants used throughout for airy, modern feel
+         ══════════════════════════════════════════════════════ */
 
-      /* PRIMARY — Rose Red (warm, confident, brand) */
-      --P:  #C0392B;
-      --Pd: #E8574A;
-      --Pl: rgba(192,57,43,.09);
-      --Pm: rgba(192,57,43,.16);
+      /* PRIMARY — ISE Red (logo color, used sparingly as accent) */
+      --P:  #D32F2F;
+      --Pd: #E53935;
+      --Pl: #FFEBEE;          /* very light red bg — chips, active rows */
+      --Pm: #FFCDD2;          /* light red — hover tints */
 
       /* STATUS */
-      --G:  #27AE60;  --Gl: rgba(39,174,96,.10);
-      --R:  #C0392B;  --Rl: rgba(192,57,43,.10);
-      --O:  #E67E22;  --Ol: rgba(230,126,34,.10);
-      --V:  #8E44AD;  --Vl: rgba(142,68,173,.10);
-      --T:  #16A085;  --Tl: rgba(22,160,133,.10);
-      --I:  #2980B9;  --Il: rgba(41,128,185,.10);
-      --A:  #E67E22;  --Al: rgba(230,126,34,.10);
+      --G:  #2E7D32;  --Gl: #E8F5E9;
+      --R:  #C62828;  --Rl: #FFEBEE;
+      --O:  #E65100;  --Ol: #FFF3E0;
+      --V:  #6A1B9A;  --Vl: #F3E5F5;
+      --T:  #00695C;  --Tl: #E0F2F1;
+      --I:  #1565C0;  --Il: #E3F2FD;
+      --A:  #E57373;  --Al: #FFEBEE;
 
-      /* ── SURFACES — warm cream-white ── */
-      --bg:   #F6F3F2;
-      --sur:  #FFFFFF;
-      --sur2: #FBF9F8;
-      --sur3: #F2EDEC;
-      --bdr:  #E8E2E0;
-      --bdr2: #D4C9C7;
+      /* ── SURFACES — clean white + silver-grey scale ── */
+      --bg:   #F5F5F5;        /* light silver-grey — logo's grey tone */
+      --sur:  #FFFFFF;        /* pure white cards */
+      --sur2: #FAFAFA;        /* near-white alternate */
+      --sur3: #F0F0F0;        /* subtle inset */
+      --bdr:  #E0E0E0;        /* silver border */
+      --bdr2: #BDBDBD;        /* stronger silver border */
 
-      /* ── TEXT — warm charcoal ── */
-      --tx:  #1A1210;
-      --tx2: #4A3F3D;
-      --tx3: #9A8E8C;
-      --tx4: #D4C9C7;
+      /* ── TEXT — deep charcoal (logo text color) ── */
+      --tx:  #212121;         /* near-black headings */
+      --tx2: #424242;         /* body text */
+      --tx3: #9E9E9E;         /* logo silver — captions, placeholders */
+      --tx4: #E0E0E0;         /* disabled */
 
-      /* ── SIDEBAR — deep warm slate ── */
-      --sb:  #1C1917;
-      --sb2: #292524;
-      --sbt: #F5F0EF;
-      --sbt2:#A8998F;
+      /* ── SIDEBAR — deep charcoal (logo's dark tone) ── */
+      --sb:  #1A1A1A;
+      --sb2: #242424;
+      --sbt: #FFFFFF;
+      --sbt2:#9E9E9E;
 
       /* LAYOUT */
-      --sbw: 256px;  --tbh: 58px;
-      --r: 12px;  --r2: 8px;  --r3: 5px;
+      --sbw: 256px;  --tbh: 56px;
+      --r: 10px;  --r2: 7px;  --r3: 5px;
 
-      /* SHADOWS — warm depth */
-      --shad:  0 1px 4px rgba(26,18,16,.06), 0 1px 2px rgba(26,18,16,.04);
-      --shad2: 0 4px 20px rgba(26,18,16,.09), 0 2px 8px rgba(26,18,16,.05);
-      --shad3: 0 20px 60px rgba(26,18,16,.13), 0 6px 18px rgba(26,18,16,.07);
+      /* SHADOWS — silver-grey toned */
+      --shad:  0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shad2: 0 4px 16px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.04);
+      --shad3: 0 16px 48px rgba(0,0,0,.12), 0 4px 14px rgba(0,0,0,.06);
 
-      /* Z */
       --z-drop:200; --z-modal:900; --z-toast:9000; --z-ntf:800; --z-sb:100;
     }
 
-    /* ── Dark mode overrides ─────────────────────────────── */
+    /* ── Dark mode ── */
     body.dark {
-      --bg:   #0C0A09;
-      --sur:  #1C1917;
-      --sur2: #242120;
-      --sur3: #2C2926;
-      --bdr:  #333030;
-      --bdr2: #443F3D;
-      --tx:   #F5F0EF;
-      --tx2:  #C4B8B5;
-      --tx3:  #7A6E6B;
-      --tx4:  #443F3D;
-      --sb:   #0C0A09;
-      --sb2:  #1C1917;
-      --sbt:  #F5F0EF;
-      --sbt2: #7A6E6B;
-      --shad:  0 2px 16px rgba(0,0,0,.50);
-      --shad2: 0 8px 36px rgba(0,0,0,.60);
-      --shad3: 0 24px 72px rgba(0,0,0,.75);
+      --bg:   #121212;
+      --sur:  #1E1E1E;
+      --sur2: #252525;
+      --sur3: #2C2C2C;
+      --bdr:  #333333;
+      --bdr2: #444444;
+      --tx:   #FFFFFF;
+      --tx2:  #BDBDBD;
+      --tx3:  #757575;
+      --tx4:  #424242;
+      --sb:   #0D0D0D;
+      --sb2:  #1A1A1A;
+      --sbt:  #FFFFFF;
+      --sbt2: #757575;
+      --shad:  0 2px 16px rgba(0,0,0,.5);
+      --shad2: 0 8px 32px rgba(0,0,0,.6);
+      --shad3: 0 24px 64px rgba(0,0,0,.75);
     }
 
     /* ══════════════════════════════════════════════════════════════════════
@@ -273,10 +270,9 @@
       align-items: center;
       justify-content: center;
       background:
-        radial-gradient(ellipse at 80% 5%,  rgba(192,57,43,.22) 0%, transparent 48%),
-        radial-gradient(ellipse at 5%  90%,  rgba(230,126,34,.14) 0%, transparent 48%),
-        radial-gradient(ellipse at 50% 50%,  rgba(192,57,43,.06) 0%, transparent 70%),
-        linear-gradient(150deg, #1C1917 0%, #251510 55%, #1C1410 100%);
+        radial-gradient(ellipse at 75% 0%,   #FFCDD2 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 100%,  #FFEBEE 0%, transparent 50%),
+        linear-gradient(160deg, #FFFFFF 0%, #FFF5F5 50%, #FAFAFA 100%);
       position: relative;
       overflow: hidden;
     }
@@ -292,16 +288,16 @@
 
     #sLogin::before {
       width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(192,57,43,.16) 0%, rgba(192,57,43,.05) 50%, transparent 70%);
-      top: -250px; right: -220px;
-      animation: drift1 18s ease-in-out infinite;
+      background: radial-gradient(circle, #FFCDD2 0%, rgba(255,205,210,.3) 40%, transparent 70%);
+      top: -280px; right: -240px;
+      animation: drift1 20s ease-in-out infinite;
     }
 
     #sLogin::after {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(230,126,34,.12) 0%, rgba(192,57,43,.05) 50%, transparent 70%);
-      bottom: -180px; left: -160px;
-      animation: drift2 22s ease-in-out infinite;
+      width: 560px; height: 560px;
+      background: radial-gradient(circle, #EF9A9A 0%, rgba(239,154,154,.2) 40%, transparent 70%);
+      bottom: -200px; left: -180px;
+      animation: drift2 25s ease-in-out infinite;
     }
 
     @keyframes float1 {
@@ -364,54 +360,52 @@
     .login-grid {
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px);
-      background-size: 36px 36px;
+      background-image: radial-gradient(circle, rgba(211,47,47,.08) 1px, transparent 1px);
+      background-size: 40px 40px;
       pointer-events: none;
-      opacity: .7;
     }
 
     .lbox {
-      background: rgba(255,255,255,.97);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      background: #FFFFFF;
       border-radius: 20px;
       padding: 48px 44px;
       width: 100%;
-      max-width: 430px;
+      max-width: 440px;
       box-shadow:
-        0 0 0 1px rgba(255,255,255,.12),
-        0 8px 32px rgba(0,0,0,.20),
-        0 40px 100px rgba(0,0,0,.45);
+        0 0 0 1px rgba(211,47,47,.08),
+        0 4px 24px rgba(0,0,0,.07),
+        0 24px 72px rgba(211,47,47,.08);
       position: relative;
       z-index: 10;
-      animation: cardRise .55s cubic-bezier(.22,1,.36,1) both;
+      animation: cardRise .5s cubic-bezier(.22,1,.36,1) both;
       overflow: hidden;
     }
 
-    /* Red shimmer bar at top */
+    /* Animated red top accent */
     .lbox::after {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #C0392B, #E8574A, #F39C85, #E8574A, #C0392B);
+      height: 3px;
+      background: linear-gradient(90deg, #D32F2F, #E57373, #EF9A9A, #E57373, #D32F2F);
       background-size: 200% auto;
-      animation: shimmerSlide 3s linear infinite;
+      animation: shimmerSlide 4s linear infinite;
     }
-    /* Warm glow halo behind login card */
+    /* Soft glow behind card */
     .lbox::before {
       content: '';
       position: absolute;
       inset: -2px;
       border-radius: 22px;
       background: transparent;
-      box-shadow: 0 0 80px rgba(192,57,43,.20), 0 0 30px rgba(230,126,34,.10);
+      box-shadow: 0 8px 40px rgba(211,47,47,.12);
       z-index: -1;
       pointer-events: none;
     }
 
     body.dark .lbox {
-      background: rgba(28,25,23,.96);
+      background: #1E1E1E;
+      box-shadow: 0 4px 24px rgba(0,0,0,.3), 0 24px 72px rgba(0,0,0,.5);
     }
 
     .l-logo-wrap {
@@ -489,7 +483,7 @@
 
     .l-field input:focus {
       border-color: var(--P);
-      box-shadow: 0 0 0 4px rgba(192,57,43,.10);
+      box-shadow: 0 0 0 4px #FFCDD2;
       background: var(--sur);
       transform: translateY(-1px);
     }
@@ -515,7 +509,7 @@
       font-weight: 700;
       border: none;
       border-radius: 12px;
-      background: linear-gradient(135deg, #C0392B 0%, #E8574A 60%, #C0392B 100%);
+      background: linear-gradient(135deg, #D32F2F 0%, #E53935 50%, #D32F2F 100%);
       background-size: 200% auto;
       color: #fff;
       cursor: pointer;
@@ -524,7 +518,7 @@
       justify-content: center;
       gap: 9px;
       margin-top: 8px;
-      box-shadow: 0 4px 20px rgba(192,57,43,.35), 0 1px 4px rgba(192,57,43,.20);
+      box-shadow: 0 4px 16px rgba(211,47,47,.30), 0 1px 4px rgba(211,47,47,.15);
       transition: all .25s cubic-bezier(.22,1,.36,1);
       font-family: inherit;
       position: relative;
@@ -543,7 +537,7 @@
 
     .l-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(192,57,43,.42), 0 2px 8px rgba(192,57,43,.20);
+      box-shadow: 0 6px 24px rgba(211,47,47,.35), 0 2px 8px rgba(211,47,47,.18);
       background-position: right center;
     }
 
@@ -551,7 +545,7 @@
 
     .l-btn:active {
       transform: translateY(0);
-      box-shadow: 0 2px 10px rgba(192,57,43,.30);
+      box-shadow: 0 2px 10px rgba(211,47,47,.30);
     }
 
     .l-err {
@@ -646,7 +640,7 @@
       background:var(--sur2); border:1.5px solid var(--bdr); border-radius:14px;
       overflow:hidden; cursor:pointer; transition:transform .15s, box-shadow .15s;
     }
-    .ed-card:hover { transform:translateY(-5px) scale(1.01); box-shadow:0 12px 36px rgba(26,18,16,.14); border-color:var(--bdr2); }
+    .ed-card:hover { transform:translateY(-5px) scale(1.01); box-shadow:0 12px 36px rgba(0,0,0,.14); border-color:var(--bdr2); }
     .ed-card-alert { border-color:var(--R) !important; }
     .ed-card-top {
       height:68px; background:linear-gradient(135deg,var(--Pl) 0%,var(--bg) 100%);
@@ -892,8 +886,8 @@
       width: var(--sbw);
       min-width: var(--sbw);
       background: var(--sb);
-      border-right: 1px solid rgba(255,255,255,.04);
-      box-shadow: 2px 0 24px rgba(0,0,0,.25);
+      border-right: 1px solid #2C2C2C;
+      box-shadow: 2px 0 20px rgba(0,0,0,.18);
       display: flex;
       flex-direction: column;
       height: 100vh;
@@ -904,7 +898,7 @@
       transition: width .25s cubic-bezier(.4, 0, .2, 1),
         transform .25s cubic-bezier(.4, 0, .2, 1);
       scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,.08) transparent;
+      scrollbar-color: rgba(255,255,255,.10) transparent;
     }
 
     .sb::-webkit-scrollbar-thumb {
@@ -932,9 +926,9 @@
     /* Sidebar Header */
     .sb-hd {
       padding: 16px 14px 14px;
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid #2C2C2C;
       flex-shrink: 0;
-      border-top: 3px solid #C0392B;
+      border-top: 3px solid #D32F2F;
     }
 
     .sb-brand {
@@ -975,15 +969,15 @@
       gap: 11px;
       padding: 10px 12px;
       border-radius: var(--r2);
-      background: rgba(255,255,255,.05);
+      background: rgba(255,255,255,.04);
       cursor: pointer;
       transition: all .20s cubic-bezier(.22,1,.36,1);
-      border: 1px solid rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.06);
     }
 
     .sb-prof:hover {
-      background: rgba(192,57,43,.15);
-      border-color: rgba(192,57,43,.30);
+      background: rgba(211,47,47,.12);
+      border-color: rgba(211,47,47,.25);
     }
 
     body.dark .sb-prof {
@@ -1008,7 +1002,7 @@
       font-size: 14px;
       color: #fff;
       flex-shrink: 0;
-      box-shadow: 0 2px 10px rgba(192,57,43,.45);
+      box-shadow: 0 2px 10px rgba(211,47,47,.45);
       overflow: hidden;
       position: relative;
     }
@@ -1096,12 +1090,12 @@
     }
 
     .nv:hover {
-      background: rgba(255,255,255,.07);
+      background: rgba(255,255,255,.06);
       color: #FFFFFF;
     }
 
     .nv.on {
-      background: linear-gradient(90deg, rgba(192,57,43,.22) 0%, rgba(192,57,43,.06) 100%);
+      background: linear-gradient(90deg, rgba(211,47,47,.25) 0%, rgba(211,47,47,.05) 100%);
       color: #FFFFFF;
       font-weight: 700;
     }
@@ -1114,7 +1108,7 @@
       transform: translateY(-50%);
       width: 3px;
       height: 20px;
-      background: linear-gradient(180deg, #E8574A, #C0392B);
+      background: linear-gradient(180deg, #EF5350, #D32F2F);
       border-radius: 0 4px 4px 0;
     }
 
@@ -1198,7 +1192,7 @@
     }
 
     body.dark .nv.on {
-      background: rgba(192,57,43,.22);
+      background: rgba(211,47,47,.22);
       color: #7dd3fc;
     }
 
@@ -1252,7 +1246,7 @@
     .topbar {
       height: var(--tbh);
       background: #FFFFFF;
-      border-bottom: 1px solid var(--bdr);
+      border-bottom: 1px solid #E0E0E0;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1261,7 +1255,7 @@
       gap: 12px;
       position: relative;
       z-index: 50;
-      box-shadow: 0 1px 0 var(--bdr), 0 2px 12px rgba(26,18,16,.04);
+      box-shadow: 0 1px 0 #E0E0E0, 0 2px 8px rgba(0,0,0,.03);
     }
 
     .tb-left {
@@ -3080,7 +3074,7 @@
       height: 60px;
       border-radius: 50%;
       margin: 0 auto 14px;
-      background: linear-gradient(135deg, #C0392B, #E8574A);
+      background: linear-gradient(135deg, #D32F2F, #E53935);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -3088,7 +3082,7 @@
       font-weight: 900;
       color: #fff;
       overflow: hidden;
-      box-shadow: 0 4px 16px rgba(192,57,43,.3);
+      box-shadow: 0 4px 16px rgba(211,47,47,.3);
     }
 
     .emp-card .ec-ava img {
@@ -3166,7 +3160,7 @@
       width: 76px;
       height: 76px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #C0392B, #E8574A);
+      background: linear-gradient(135deg, #D32F2F, #E53935);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -5103,8 +5097,8 @@
        SIDEBAR — glowing left accent, hover aura
     ══════════════════════════════════════════ */
     .sb {
-      border-right: 1px solid rgba(255,255,255,.04);
-      box-shadow: 2px 0 24px rgba(0,0,0,.25);
+      border-right: 1px solid #2C2C2C;
+      box-shadow: 2px 0 20px rgba(0,0,0,.18);
     }
     .sb-hd { border-bottom-color: var(--bdr); }
 
@@ -5131,7 +5125,7 @@
       box-shadow: 2px 0 8px rgba(0,95,115,.3);
     }
     /* Nav icon glow on active */
-    .nv.on i { color: #F4A396; }
+    .nv.on i { color: #EF9A9A; }
 
     /* User profile card in sidebar */
     .sb-prof {
@@ -5223,7 +5217,7 @@
       transition: transform .3s;
     }
     .kpi:hover {
-      box-shadow: var(--shad2), 0 0 0 1.5px rgba(192,57,43,.10);
+      box-shadow: var(--shad2), 0 0 0 1.5px rgba(211,47,47,.10);
       transform: translateY(-3px) scale(1.015);
       border-color: rgba(10,147,150,.2);
     }
@@ -5530,7 +5524,7 @@
       transition: all .2s cubic-bezier(.34,1.4,.64,1);
     }
     .mob-nav-item.active .mob-nav-pill {
-      background: linear-gradient(135deg, rgba(192,57,43,.12), rgba(192,57,43,.10));
+      background: linear-gradient(135deg, rgba(211,47,47,.12), rgba(211,47,47,.10));
       box-shadow: 0 2px 10px rgba(0,95,115,.15);
     }
     .mob-nav-item.active i { color: var(--P); }
@@ -5559,7 +5553,7 @@
     body.dark .kpi { border-color: rgba(51,65,85,.6); }
     body.dark .topbar { box-shadow: 0 1px 0 rgba(0,0,0,.3), 0 4px 20px rgba(0,0,0,.2); }
     body.dark .nv:hover { background: linear-gradient(90deg, rgba(0,95,115,.15) 0%, transparent 100%); }
-    body.dark .nv.on   { background: linear-gradient(90deg, rgba(192,57,43,.22) 0%, rgba(192,57,43,.05) 100%); }
+    body.dark .nv.on   { background: linear-gradient(90deg, rgba(211,47,47,.22) 0%, rgba(211,47,47,.04) 100%); }
     body.dark #toast   { box-shadow: 0 8px 40px rgba(0,0,0,.4) !important; }
 
     /* ── Topbar title transition ── */
@@ -5649,7 +5643,7 @@
   <!-- ═══════════════════════════════════════════════════════════
      LOGIN SCREEN
 ═══════════════════════════════════════════════════════════ -->
-  <div class="scr on" id="sLogin" style="background:linear-gradient(155deg,#1C1917 0%,#251510 45%,#1C1917 100%)">
+  <div class="scr on" id="sLogin" style="background:linear-gradient(155deg,#1A1A1A 0%,#242424 45%,#1A1A1A 100%)">
     <div class="lbox">
       <div class="l-logo-wrap">
         <img src="https://ishasteels.com/assets/images/logo.png" alt="ISE Logo"
@@ -5690,7 +5684,7 @@
 
   <!-- ── SPLASH LOADER — shown during getAllData, hidden once data arrives ── -->
   <div id="fkSplash" style="display:none;position:fixed;inset:0;z-index:9999;
-    background:linear-gradient(150deg,#1C1917 0%,#292524 55%,#1C1917 100%);
+    background:linear-gradient(150deg,#1A1A1A 0%,#242424 55%,#1A1A1A 100%);
     flex-direction:column;align-items:center;justify-content:center;gap:0">
     <div style="animation:splashPop .5s cubic-bezier(.34,1.56,.64,1) both;display:flex;flex-direction:column;align-items:center;gap:20px">
       <img src="https://ishasteels.com/assets/images/logo.png" alt="ISE"
@@ -11653,7 +11647,7 @@ function _loadSetupTasks() {
     ══════════════════════════════════════════════════════════ */
     function _avatarGradient(name) {
       var palette = [
-        ['#C0392B', '#E8574A'], ['#2F9E44', '#40C057'], ['#7048E8', '#9775FA'],
+        ['#D32F2F', '#E53935'], ['#2F9E44', '#40C057'], ['#7048E8', '#9775FA'],
         ['#D97706', '#F59E0B'], ['#E03131', '#F03E3E'], ['#0D9488', '#14B8A6'],
         ['#0EA5E9', '#38BDF8'], ['#DC2626', '#EF4444'], ['#7C3AED', '#8B5CF6']
       ];
@@ -17911,7 +17905,7 @@ function _deactivateTask(uid) {
           var rx = -dy * 7;
           var ry =  dx * 7;
           el.style.transform = 'translateY(-3px) scale(1.015) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
-          el.style.boxShadow = 'var(--shad2), 0 0 0 1.5px rgba(192,57,43,.10), 0 ' + (6 + dy*4) + 'px ' + (20 + Math.abs(dx)*10) + 'px rgba(13,27,42,.12)';
+          el.style.boxShadow = 'var(--shad2), 0 0 0 1.5px rgba(211,47,47,.10), 0 ' + (6 + dy*4) + 'px ' + (20 + Math.abs(dx)*10) + 'px rgba(13,27,42,.12)';
         }, { passive: true });
         el.addEventListener('mouseleave', function() {
           el.style.transform = '';

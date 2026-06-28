@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-  <meta name="theme-color" content="#141414">
+  <meta name="theme-color" content="#1C1917">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -27,88 +27,81 @@
                T=Teal, I=Info, A=Accent, l=light bg version
 ══════════════════════════════════════════════════════════════════════ */
     :root {
-      /* ══════════════════════════════════════════
-         ISE Staff Portal — Design System
-         Palette: Black · Grey · Light Red
-         ══════════════════════════════════════════ */
+      /* ══════════════════════════════════════════════════════
+         ISE Staff Portal — Rose Steel Theme
+         ══════════════════════════════════════════════════════
+         Primary: Rose Red variants  #C0392B → #E8574A → #FFEDE8
+         Neutral: Warm slate/cream   #2C2C2C → #F9F5F4 → #FFFFFF
+         Accent:  Warm amber         #E67E22  (badges, highlights)
+      ══════════════════════════════════════════════════════ */
 
-      /* PRIMARY — Light Red (energetic, modern, ISE brand) */
-      --P:  #E53935;          /* main red — buttons, active states */
-      --Pd: #F44336;          /* lighter red — hover, highlights */
-      --Pl: rgba(229,57,53,.08);   /* tint bg — selected rows, pills */
-      --Pm: rgba(229,57,53,.15);   /* medium tint — hover overlays */
+      /* PRIMARY — Rose Red (warm, confident, brand) */
+      --P:  #C0392B;
+      --Pd: #E8574A;
+      --Pl: rgba(192,57,43,.09);
+      --Pm: rgba(192,57,43,.16);
 
-      /* STATUS COLORS */
-      --G:  #2E7D32;
-      --Gl: rgba(46,125,50,.10);
-      --R:  #C62828;
-      --Rl: rgba(198,40,40,.10);
-      --O:  #E65100;
-      --Ol: rgba(230,81,0,.10);
-      --V:  #6A1B9A;
-      --Vl: rgba(106,27,154,.10);
-      --T:  #00695C;
-      --Tl: rgba(0,105,92,.10);
-      --I:  #0277BD;
-      --Il: rgba(2,119,189,.10);
-      --A:  #FF6B6B;          /* soft coral red — accent chips */
-      --Al: rgba(255,107,107,.10);
+      /* STATUS */
+      --G:  #27AE60;  --Gl: rgba(39,174,96,.10);
+      --R:  #C0392B;  --Rl: rgba(192,57,43,.10);
+      --O:  #E67E22;  --Ol: rgba(230,126,34,.10);
+      --V:  #8E44AD;  --Vl: rgba(142,68,173,.10);
+      --T:  #16A085;  --Tl: rgba(22,160,133,.10);
+      --I:  #2980B9;  --Il: rgba(41,128,185,.10);
+      --A:  #E67E22;  --Al: rgba(230,126,34,.10);
 
-      /* ── SURFACES — pure grey-white scale ── */
-      --bg:   #F2F2F2;        /* page background — neutral light grey */
-      --sur:  #FFFFFF;        /* cards, panels — pure white */
-      --sur2: #F7F7F7;        /* alternate rows, inner sections */
-      --sur3: #EFEFEF;        /* subtle inset bg */
-      --bdr:  #E4E4E4;        /* default border */
-      --bdr2: #CACACA;        /* stronger border */
+      /* ── SURFACES — warm cream-white ── */
+      --bg:   #F6F3F2;
+      --sur:  #FFFFFF;
+      --sur2: #FBF9F8;
+      --sur3: #F2EDEC;
+      --bdr:  #E8E2E0;
+      --bdr2: #D4C9C7;
 
-      /* ── TEXT — rich black hierarchy ── */
-      --tx:  #111111;         /* headings, primary text */
-      --tx2: #444444;         /* body, labels */
-      --tx3: #888888;         /* placeholders, captions */
-      --tx4: #C8C8C8;         /* disabled, very subtle */
+      /* ── TEXT — warm charcoal ── */
+      --tx:  #1A1210;
+      --tx2: #4A3F3D;
+      --tx3: #9A8E8C;
+      --tx4: #D4C9C7;
 
-      /* ── SIDEBAR — deep black (premium, bold) ── */
-      --sb:  #141414;         /* sidebar background */
-      --sb2: #1E1E1E;         /* sidebar hover / section bg */
-      --sbt: #F0F0F0;         /* sidebar text — near white */
-      --sbt2:#888888;         /* sidebar muted text */
+      /* ── SIDEBAR — deep warm slate ── */
+      --sb:  #1C1917;
+      --sb2: #292524;
+      --sbt: #F5F0EF;
+      --sbt2:#A8998F;
 
-      /* ── LAYOUT ── */
-      --sbw: 256px;
-      --tbh: 56px;
-      --r:   10px;
-      --r2:  7px;
-      --r3:  5px;
+      /* LAYOUT */
+      --sbw: 256px;  --tbh: 58px;
+      --r: 12px;  --r2: 8px;  --r3: 5px;
 
-      /* ── SHADOWS — crisp, grounded ── */
-      --shad:  0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.05);
-      --shad2: 0 4px 16px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.06);
-      --shad3: 0 16px 48px rgba(0,0,0,.14), 0 4px 14px rgba(0,0,0,.08);
+      /* SHADOWS — warm depth */
+      --shad:  0 1px 4px rgba(26,18,16,.06), 0 1px 2px rgba(26,18,16,.04);
+      --shad2: 0 4px 20px rgba(26,18,16,.09), 0 2px 8px rgba(26,18,16,.05);
+      --shad3: 0 20px 60px rgba(26,18,16,.13), 0 6px 18px rgba(26,18,16,.07);
 
-      /* Z-layers */
-      --z-drop: 200; --z-modal: 900; --z-toast: 9000; --z-ntf: 800; --z-sb: 100;
+      /* Z */
+      --z-drop:200; --z-modal:900; --z-toast:9000; --z-ntf:800; --z-sb:100;
     }
 
     /* ── Dark mode overrides ─────────────────────────────── */
     body.dark {
-      --bg:   #0A0A0A;
-      --sur:  #141414;
-      --sur2: #1C1C1C;
-      --sur3: #242424;
-      --bdr:  #2A2A2A;
-      --bdr2: #3D3D3D;
-      --tx:   #F0F0F0;
-      --tx2:  #B8B8B8;
-      --tx3:  #6B6B6B;
-      --tx4:  #3D3D3D;
-      --sb:   #0A0A0A;
-      --sb2:  #141414;
-      --sbt:  #F0F0F0;
-      --sbt2: #888888;
+      --bg:   #0C0A09;
+      --sur:  #1C1917;
+      --sur2: #242120;
+      --sur3: #2C2926;
+      --bdr:  #333030;
+      --bdr2: #443F3D;
+      --tx:   #F5F0EF;
+      --tx2:  #C4B8B5;
+      --tx3:  #7A6E6B;
+      --tx4:  #443F3D;
+      --sb:   #0C0A09;
+      --sb2:  #1C1917;
+      --sbt:  #F5F0EF;
+      --sbt2: #7A6E6B;
       --shad:  0 2px 16px rgba(0,0,0,.50);
-      --shad2: 0 8px 32px rgba(0,0,0,.60);
-      --shad3: 0 24px 64px rgba(0,0,0,.75);
+      --shad2: 0 8px 36px rgba(0,0,0,.60);
+      --shad3: 0 24px 72px rgba(0,0,0,.75);
     }
 
     /* ══════════════════════════════════════════════════════════════════════
@@ -120,6 +113,16 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    /* Global transition for interactive elements */
+    button, .btn, .card, .nv, .tb-ico, .chip, .badge,
+    [role="button"], .clickable {
+      transition: transform .18s cubic-bezier(.22,1,.36,1),
+                  box-shadow .18s ease,
+                  background .18s ease,
+                  color .18s ease,
+                  border-color .18s ease;
     }
 
     html {
@@ -270,9 +273,10 @@
       align-items: center;
       justify-content: center;
       background:
-        radial-gradient(ellipse at 65% 10%, rgba(229,57,53,.20) 0%, transparent 50%),
-        radial-gradient(ellipse at 15% 88%, rgba(229,57,53,.12) 0%, transparent 55%),
-        linear-gradient(160deg, #0A0A0A 0%, #1A0808 50%, #0F0F0F 100%);
+        radial-gradient(ellipse at 80% 5%,  rgba(192,57,43,.22) 0%, transparent 48%),
+        radial-gradient(ellipse at 5%  90%,  rgba(230,126,34,.14) 0%, transparent 48%),
+        radial-gradient(ellipse at 50% 50%,  rgba(192,57,43,.06) 0%, transparent 70%),
+        linear-gradient(150deg, #1C1917 0%, #251510 55%, #1C1410 100%);
       position: relative;
       overflow: hidden;
     }
@@ -287,21 +291,17 @@
     }
 
     #sLogin::before {
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(229,57,53,.12) 0%, transparent 70%);
-      top: -200px;
-      right: -200px;
-      animation: float1 10s ease-in-out infinite;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(192,57,43,.16) 0%, rgba(192,57,43,.05) 50%, transparent 70%);
+      top: -250px; right: -220px;
+      animation: drift1 18s ease-in-out infinite;
     }
 
     #sLogin::after {
-      width: 420px;
-      height: 420px;
-      background: radial-gradient(circle, rgba(229,57,53,.08) 0%, transparent 70%);
-      bottom: -130px;
-      left: -130px;
-      animation: float2 14s ease-in-out infinite;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(230,126,34,.12) 0%, rgba(192,57,43,.05) 50%, transparent 70%);
+      bottom: -180px; left: -160px;
+      animation: drift2 22s ease-in-out infinite;
     }
 
     @keyframes float1 {
@@ -317,57 +317,101 @@
     }
 
     @keyframes float2 {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(20px) rotate(-3deg); }
+    }
 
-      0%,
-      100% {
-        transform: translateY(0) rotate(0deg);
-      }
+    @keyframes drift1 {
+      0%   { transform: translate(0,0) scale(1); }
+      33%  { transform: translate(30px,-20px) scale(1.05); }
+      66%  { transform: translate(-15px,25px) scale(.97); }
+      100% { transform: translate(0,0) scale(1); }
+    }
 
-      50% {
-        transform: translateY(20px) rotate(-3deg);
-      }
+    @keyframes drift2 {
+      0%   { transform: translate(0,0) scale(1); }
+      40%  { transform: translate(-25px,15px) scale(1.08); }
+      75%  { transform: translate(20px,-10px) scale(.95); }
+      100% { transform: translate(0,0) scale(1); }
+    }
+
+    @keyframes shimmerSlide {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes cardRise {
+      0%   { opacity:0; transform: translateY(32px) scale(.96); }
+      100% { opacity:1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes pulseRing {
+      0%   { transform: scale(1); opacity:.6; }
+      100% { transform: scale(1.5); opacity:0; }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity:0; transform: translateX(-20px); }
+      to   { opacity:1; transform: translateX(0); }
+    }
+
+    @keyframes countUp {
+      from { opacity:0; transform: translateY(10px); }
+      to   { opacity:1; transform: translateY(0); }
     }
 
     /* Decorative grid pattern overlay */
     .login-grid {
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
-      background-size: 48px 48px;
+      background-image: radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 36px 36px;
       pointer-events: none;
+      opacity: .7;
     }
 
     .lbox {
-      background: #FFFFFF;
-      border-radius: 14px;
-      padding: 44px 40px;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 20px;
+      padding: 48px 44px;
       width: 100%;
-      max-width: 420px;
+      max-width: 430px;
       box-shadow:
-        0 4px 24px rgba(0,0,0,.18),
-        0 32px 80px rgba(0,0,0,.40);
+        0 0 0 1px rgba(255,255,255,.12),
+        0 8px 32px rgba(0,0,0,.20),
+        0 40px 100px rgba(0,0,0,.45);
       position: relative;
       z-index: 10;
-      animation: pop .42s cubic-bezier(.34,1.2,.64,1) both;
-      border-top: 4px solid #E53935;
+      animation: cardRise .55s cubic-bezier(.22,1,.36,1) both;
+      overflow: hidden;
     }
-    /* Glow behind login card */
+
+    /* Red shimmer bar at top */
+    .lbox::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #C0392B, #E8574A, #F39C85, #E8574A, #C0392B);
+      background-size: 200% auto;
+      animation: shimmerSlide 3s linear infinite;
+    }
+    /* Warm glow halo behind login card */
     .lbox::before {
       content: '';
       position: absolute;
-      inset: -1px;
-      border-radius: 15px;
+      inset: -2px;
+      border-radius: 22px;
       background: transparent;
-      box-shadow: 0 0 50px rgba(229,57,53,.18);
+      box-shadow: 0 0 80px rgba(192,57,43,.20), 0 0 30px rgba(230,126,34,.10);
       z-index: -1;
       pointer-events: none;
     }
 
     body.dark .lbox {
-      background: #1A1A1A;
-      border-top-color: #E53935;
+      background: rgba(28,25,23,.96);
     }
 
     .l-logo-wrap {
@@ -376,10 +420,11 @@
     }
 
     .l-logo-wrap img {
-      height: 54px;
-      max-width: 200px;
+      height: 60px;
+      max-width: 220px;
       object-fit: contain;
       margin: 0 auto;
+      animation: cardRise .6s .1s cubic-bezier(.22,1,.36,1) both;
     }
 
     .l-logo-wrap .l-logo-fallback {
@@ -399,11 +444,12 @@
 
     .l-title {
       text-align: center;
-      font-size: 22px;
-      font-weight: 800;
+      font-size: 23px;
+      font-weight: 900;
       margin-bottom: 6px;
-      letter-spacing: -.3px;
+      letter-spacing: -.4px;
       color: var(--tx);
+      animation: cardRise .5s .15s cubic-bezier(.22,1,.36,1) both;
     }
 
     .l-sub {
@@ -431,20 +477,21 @@
 
     .l-field input {
       width: 100%;
-      padding: 12px 14px 12px 42px;
+      padding: 13px 14px 13px 44px;
       border: 1.5px solid var(--bdr);
-      border-radius: 11px;
+      border-radius: 12px;
       font-size: 14px;
-      background: var(--bg);
+      background: var(--sur2);
       color: var(--tx);
-      transition: all .2s;
+      transition: all .25s cubic-bezier(.22,1,.36,1);
       outline: none;
     }
 
     .l-field input:focus {
       border-color: var(--P);
-      box-shadow: 0 0 0 4px var(--Pl);
+      box-shadow: 0 0 0 4px rgba(192,57,43,.10);
       background: var(--sur);
+      transform: translateY(-1px);
     }
 
     .l-field .l-ico {
@@ -463,32 +510,48 @@
 
     .l-btn {
       width: 100%;
-      padding: 14px;
+      padding: 15px;
       font-size: 15px;
       font-weight: 700;
       border: none;
-      border-radius: 11px;
-      background: linear-gradient(135deg, #E53935, #F44336);
+      border-radius: 12px;
+      background: linear-gradient(135deg, #C0392B 0%, #E8574A 60%, #C0392B 100%);
+      background-size: 200% auto;
       color: #fff;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 9px;
-      margin-top: 6px;
-      box-shadow: 0 4px 14px rgba(229,57,53,.30);
-      transition: all .2s;
+      margin-top: 8px;
+      box-shadow: 0 4px 20px rgba(192,57,43,.35), 0 1px 4px rgba(192,57,43,.20);
+      transition: all .25s cubic-bezier(.22,1,.36,1);
       font-family: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .l-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.15), transparent);
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity .2s;
     }
 
     .l-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(229,57,53,.36);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(192,57,43,.42), 0 2px 8px rgba(192,57,43,.20);
+      background-position: right center;
     }
 
+    .l-btn:hover::before { opacity: 1; }
+
     .l-btn:active {
-      transform: none;
-      box-shadow: none;
+      transform: translateY(0);
+      box-shadow: 0 2px 10px rgba(192,57,43,.30);
     }
 
     .l-err {
@@ -583,7 +646,7 @@
       background:var(--sur2); border:1.5px solid var(--bdr); border-radius:14px;
       overflow:hidden; cursor:pointer; transition:transform .15s, box-shadow .15s;
     }
-    .ed-card:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,0,0,.1); }
+    .ed-card:hover { transform:translateY(-5px) scale(1.01); box-shadow:0 12px 36px rgba(26,18,16,.14); border-color:var(--bdr2); }
     .ed-card-alert { border-color:var(--R) !important; }
     .ed-card-top {
       height:68px; background:linear-gradient(135deg,var(--Pl) 0%,var(--bg) 100%);
@@ -829,8 +892,8 @@
       width: var(--sbw);
       min-width: var(--sbw);
       background: var(--sb);
-      border-right: 1px solid rgba(255,255,255,.05);
-      box-shadow: 2px 0 24px rgba(0,0,0,.35);
+      border-right: 1px solid rgba(255,255,255,.04);
+      box-shadow: 2px 0 24px rgba(0,0,0,.25);
       display: flex;
       flex-direction: column;
       height: 100vh;
@@ -871,7 +934,7 @@
       padding: 16px 14px 14px;
       border-bottom: 1px solid rgba(255,255,255,.06);
       flex-shrink: 0;
-      border-top: 3px solid #E53935;
+      border-top: 3px solid #C0392B;
     }
 
     .sb-brand {
@@ -914,13 +977,13 @@
       border-radius: var(--r2);
       background: rgba(255,255,255,.05);
       cursor: pointer;
-      transition: all .15s;
+      transition: all .20s cubic-bezier(.22,1,.36,1);
       border: 1px solid rgba(255,255,255,.07);
     }
 
     .sb-prof:hover {
-      background: rgba(229,57,53,.12);
-      border-color: rgba(229,57,53,.25);
+      background: rgba(192,57,43,.15);
+      border-color: rgba(192,57,43,.30);
     }
 
     body.dark .sb-prof {
@@ -945,7 +1008,7 @@
       font-size: 14px;
       color: #fff;
       flex-shrink: 0;
-      box-shadow: 0 2px 10px rgba(229,57,53,.45);
+      box-shadow: 0 2px 10px rgba(192,57,43,.45);
       overflow: hidden;
       position: relative;
     }
@@ -1033,12 +1096,12 @@
     }
 
     .nv:hover {
-      background: rgba(255,255,255,.08);
+      background: rgba(255,255,255,.07);
       color: #FFFFFF;
     }
 
     .nv.on {
-      background: rgba(229,57,53,.18);
+      background: linear-gradient(90deg, rgba(192,57,43,.22) 0%, rgba(192,57,43,.06) 100%);
       color: #FFFFFF;
       font-weight: 700;
     }
@@ -1051,8 +1114,8 @@
       transform: translateY(-50%);
       width: 3px;
       height: 20px;
-      background: #E53935;
-      border-radius: 0 3px 3px 0;
+      background: linear-gradient(180deg, #E8574A, #C0392B);
+      border-radius: 0 4px 4px 0;
     }
 
     .nv i {
@@ -1135,7 +1198,7 @@
     }
 
     body.dark .nv.on {
-      background: rgba(229,57,53,.22);
+      background: rgba(192,57,43,.22);
       color: #7dd3fc;
     }
 
@@ -1189,7 +1252,7 @@
     .topbar {
       height: var(--tbh);
       background: #FFFFFF;
-      border-bottom: 1px solid #E4E4E4;
+      border-bottom: 1px solid var(--bdr);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1198,7 +1261,7 @@
       gap: 12px;
       position: relative;
       z-index: 50;
-      box-shadow: 0 1px 6px rgba(15,25,35,.05);
+      box-shadow: 0 1px 0 var(--bdr), 0 2px 12px rgba(26,18,16,.04);
     }
 
     .tb-left {
@@ -3017,7 +3080,7 @@
       height: 60px;
       border-radius: 50%;
       margin: 0 auto 14px;
-      background: linear-gradient(135deg, #E53935, #F44336);
+      background: linear-gradient(135deg, #C0392B, #E8574A);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -3025,7 +3088,7 @@
       font-weight: 900;
       color: #fff;
       overflow: hidden;
-      box-shadow: 0 4px 16px rgba(229,57,53,.3);
+      box-shadow: 0 4px 16px rgba(192,57,43,.3);
     }
 
     .emp-card .ec-ava img {
@@ -3103,7 +3166,7 @@
       width: 76px;
       height: 76px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #E53935, #F44336);
+      background: linear-gradient(135deg, #C0392B, #E8574A);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -5040,8 +5103,8 @@
        SIDEBAR — glowing left accent, hover aura
     ══════════════════════════════════════════ */
     .sb {
-      border-right: 1px solid rgba(255,255,255,.05);
-      box-shadow: 2px 0 24px rgba(0,0,0,.35);
+      border-right: 1px solid rgba(255,255,255,.04);
+      box-shadow: 2px 0 24px rgba(0,0,0,.25);
     }
     .sb-hd { border-bottom-color: var(--bdr); }
 
@@ -5068,7 +5131,7 @@
       box-shadow: 2px 0 8px rgba(0,95,115,.3);
     }
     /* Nav icon glow on active */
-    .nv.on i { color: #FF6B6B; }
+    .nv.on i { color: #F4A396; }
 
     /* User profile card in sidebar */
     .sb-prof {
@@ -5160,7 +5223,7 @@
       transition: transform .3s;
     }
     .kpi:hover {
-      box-shadow: var(--shad2), 0 0 0 1.5px rgba(185,28,28,.10);
+      box-shadow: var(--shad2), 0 0 0 1.5px rgba(192,57,43,.10);
       transform: translateY(-3px) scale(1.015);
       border-color: rgba(10,147,150,.2);
     }
@@ -5467,7 +5530,7 @@
       transition: all .2s cubic-bezier(.34,1.4,.64,1);
     }
     .mob-nav-item.active .mob-nav-pill {
-      background: linear-gradient(135deg, rgba(229,57,53,.12), rgba(185,28,28,.10));
+      background: linear-gradient(135deg, rgba(192,57,43,.12), rgba(192,57,43,.10));
       box-shadow: 0 2px 10px rgba(0,95,115,.15);
     }
     .mob-nav-item.active i { color: var(--P); }
@@ -5496,7 +5559,7 @@
     body.dark .kpi { border-color: rgba(51,65,85,.6); }
     body.dark .topbar { box-shadow: 0 1px 0 rgba(0,0,0,.3), 0 4px 20px rgba(0,0,0,.2); }
     body.dark .nv:hover { background: linear-gradient(90deg, rgba(0,95,115,.15) 0%, transparent 100%); }
-    body.dark .nv.on   { background: rgba(229,57,53,.18); }
+    body.dark .nv.on   { background: linear-gradient(90deg, rgba(192,57,43,.22) 0%, rgba(192,57,43,.05) 100%); }
     body.dark #toast   { box-shadow: 0 8px 40px rgba(0,0,0,.4) !important; }
 
     /* ── Topbar title transition ── */
@@ -5586,7 +5649,7 @@
   <!-- ═══════════════════════════════════════════════════════════
      LOGIN SCREEN
 ═══════════════════════════════════════════════════════════ -->
-  <div class="scr on" id="sLogin" style="background:linear-gradient(155deg,#0A0A0A 0%,#1A0808 45%,#0F0F0F 100%)">
+  <div class="scr on" id="sLogin" style="background:linear-gradient(155deg,#1C1917 0%,#251510 45%,#1C1917 100%)">
     <div class="lbox">
       <div class="l-logo-wrap">
         <img src="https://ishasteels.com/assets/images/logo.png" alt="ISE Logo"
@@ -5627,7 +5690,7 @@
 
   <!-- ── SPLASH LOADER — shown during getAllData, hidden once data arrives ── -->
   <div id="fkSplash" style="display:none;position:fixed;inset:0;z-index:9999;
-    background:linear-gradient(150deg,#141414 0%,#2A2A2A 55%,#1A1A1A 100%);
+    background:linear-gradient(150deg,#1C1917 0%,#292524 55%,#1C1917 100%);
     flex-direction:column;align-items:center;justify-content:center;gap:0">
     <div style="animation:splashPop .5s cubic-bezier(.34,1.56,.64,1) both;display:flex;flex-direction:column;align-items:center;gap:20px">
       <img src="https://ishasteels.com/assets/images/logo.png" alt="ISE"
@@ -5663,7 +5726,7 @@
             onerror="this.style.display='none'">
           <div>
             <div class="sb-brand-txt">Isha Steel</div>
-            <div class="sb-brand-ver">Portal v1.0</div>
+            <div class="sb-brand-ver">Portal v3.0</div>
           </div>
         </div>
         <div class="sb-prof" onclick="_loadV('profile')">
@@ -11590,7 +11653,7 @@ function _loadSetupTasks() {
     ══════════════════════════════════════════════════════════ */
     function _avatarGradient(name) {
       var palette = [
-        ['#E53935', '#F44336'], ['#2F9E44', '#40C057'], ['#7048E8', '#9775FA'],
+        ['#C0392B', '#E8574A'], ['#2F9E44', '#40C057'], ['#7048E8', '#9775FA'],
         ['#D97706', '#F59E0B'], ['#E03131', '#F03E3E'], ['#0D9488', '#14B8A6'],
         ['#0EA5E9', '#38BDF8'], ['#DC2626', '#EF4444'], ['#7C3AED', '#8B5CF6']
       ];
@@ -17848,7 +17911,7 @@ function _deactivateTask(uid) {
           var rx = -dy * 7;
           var ry =  dx * 7;
           el.style.transform = 'translateY(-3px) scale(1.015) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
-          el.style.boxShadow = 'var(--shad2), 0 0 0 1.5px rgba(185,28,28,.10), 0 ' + (6 + dy*4) + 'px ' + (20 + Math.abs(dx)*10) + 'px rgba(13,27,42,.12)';
+          el.style.boxShadow = 'var(--shad2), 0 0 0 1.5px rgba(192,57,43,.10), 0 ' + (6 + dy*4) + 'px ' + (20 + Math.abs(dx)*10) + 'px rgba(13,27,42,.12)';
         }, { passive: true });
         el.addEventListener('mouseleave', function() {
           el.style.transform = '';

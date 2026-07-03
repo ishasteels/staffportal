@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-  <meta name="theme-color" content="#005F73">
+  <meta name="theme-color" content="#D8232A">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -28,7 +28,7 @@
 ══════════════════════════════════════════════════════════════════════ */
     :root {
       /* Brand palette */
-      --P: #005F73;
+      --P: #D8232A;
       --Pd: #0A9396;
       --Pl: rgba(0, 95, 115, .10);
       --Pm: rgba(0, 95, 115, .20);
@@ -40,17 +40,17 @@
       --Ol: rgba(217, 119, 6, .10);
       --V: #7048E8;
       --Vl: rgba(112, 72, 232, .10);
-      --T: #0D9488;
+      --T: #B3141B;
       --Tl: rgba(13, 148, 136, .10);
       --I: #0EA5E9;
       --Il: rgba(14, 165, 233, .10);
-      --A: #94D2BD;
+      --A: #C7C7CC;
       --Al: rgba(148, 210, 189, .10);
 
       /* Surfaces — cooler neutral “desk” */
-      --bg: #EEF2F7;
+      --bg: #F2F2F4;
       --sur: #FFFFFF;
-      --sur2: #F6F9FC;
+      --sur2: #FAFAFA;
       --sur3: #EFF3F8;
       --bdr: #E3E9F1;
       --bdr2: #C8D6E3;
@@ -4969,7 +4969,7 @@
       #sLogin{
         flex-direction:column!important; align-items:stretch!important;
         justify-content:flex-end!important; padding:0!important;
-        background:linear-gradient(160deg,#003040 0%,#005F73 45%,#0A9396 72%,#94D2BD 100%)!important;
+        background:linear-gradient(160deg,#003040 0%,#D8232A 45%,#0A9396 72%,#C7C7CC 100%)!important;
       }
       .l-mob-brand{ display:flex!important; }
       #lDeskLogo{ display:none!important; }
@@ -5263,7 +5263,7 @@
     .btn-red    { background: linear-gradient(135deg, #E03131, #F03E3E); box-shadow: 0 2px 8px rgba(224,49,49,.25); }
     .btn-orange { background: linear-gradient(135deg, #D97706, #F59E0B); box-shadow: 0 2px 8px rgba(217,119,6,.25); }
     .btn-violet { background: linear-gradient(135deg, #7048E8, #9061F9); box-shadow: 0 2px 8px rgba(112,72,232,.25); }
-    .btn-teal   { background: linear-gradient(135deg, #0D9488, #14B8A6); box-shadow: 0 2px 8px rgba(13,148,136,.25); }
+    .btn-teal   { background: linear-gradient(135deg, #B3141B, #14B8A6); box-shadow: 0 2px 8px rgba(13,148,136,.25); }
 
     /* Login button */
     .l-btn {
@@ -7026,7 +7026,7 @@
 
   <!-- ── SPLASH LOADER — shown during getAllData, hidden once data arrives ── -->
   <div id="fkSplash" style="display:none;position:fixed;inset:0;z-index:9999;
-    background:linear-gradient(150deg,#005F73 0%,#0A9396 55%,#94D2BD 100%);
+    background:linear-gradient(150deg,#D8232A 0%,#0A9396 55%,#C7C7CC 100%);
     flex-direction:column;align-items:center;justify-content:center;gap:0">
     <div style="animation:splashPop .5s cubic-bezier(.34,1.56,.64,1) both;display:flex;flex-direction:column;align-items:center;gap:20px">
       <div style="position:relative;width:92px;height:92px">
@@ -13371,8 +13371,8 @@ function _loadSetupTasks() {
     ══════════════════════════════════════════════════════════ */
     function _avatarGradient(name) {
       var palette = [
-        ['#005F73', '#0A9396'], ['#2F9E44', '#40C057'], ['#7048E8', '#9775FA'],
-        ['#D97706', '#F59E0B'], ['#E03131', '#F03E3E'], ['#0D9488', '#14B8A6'],
+        ['#D8232A', '#0A9396'], ['#2F9E44', '#40C057'], ['#7048E8', '#9775FA'],
+        ['#D97706', '#F59E0B'], ['#E03131', '#F03E3E'], ['#B3141B', '#14B8A6'],
         ['#0EA5E9', '#38BDF8'], ['#DC2626', '#EF4444'], ['#7C3AED', '#8B5CF6']
       ];
       var idx = name ? name.charCodeAt(0) % palette.length : 0;

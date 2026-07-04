@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-  <meta name="theme-color" content="#D8232A">
+  <meta name="theme-color" content="#D51515">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Isha Steels Portal">
+  <meta name="apple-mobile-web-app-title" content="ISE Portal">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-180.png">
   <title>ISE Staff Portal</title>
@@ -19,6 +19,24 @@
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
     rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+  <!-- Early session check: prevents login screen flash when valid session exists -->
+  <script>
+    (function(){
+      try{
+        var raw=localStorage.getItem('fk_session_v2');
+        if(raw){
+          var s=JSON.parse(raw);
+          var validName=s&&s.user&&s.user.name&&s.user.name!=='User'&&s.user.name!=='Staff'&&s.user.name.trim()!=='';
+          if(s&&s.user&&s.token&&s.user.emp_code&&validName&&Date.now()<(s.exp||0)){
+            // Valid session found early — add pre-hidden class to sLogin
+            // This runs before DOMContentLoaded so we use document.write trick via style
+            // Instead, mark body with a class the CSS can pick up
+            document.documentElement.classList.add('has-session');
+          }
+        }
+      }catch(e){}
+    })();
+  </script>
 
   <style>
     /* ══════════════════════════════════════════════════════════════════════
@@ -28,10 +46,10 @@
 ══════════════════════════════════════════════════════════════════════ */
     :root {
       /* Brand palette */
-      --P: #D8232A;
-      --Pd: #0A9396;
-      --Pl: rgba(0, 95, 115, .10);
-      --Pm: rgba(0, 95, 115, .20);
+      --P: #D51515;
+      --Pd: #B01010;
+      --Pl: rgba(213, 21, 21, .10);
+      --Pm: rgba(213, 21, 21, .20);
       --G: #2F9E44;
       --Gl: rgba(47, 158, 68, .10);
       --R: #E03131;
@@ -40,17 +58,17 @@
       --Ol: rgba(217, 119, 6, .10);
       --V: #7048E8;
       --Vl: rgba(112, 72, 232, .10);
-      --T: #B3141B;
-      --Tl: rgba(13, 148, 136, .10);
+      --T: #2B2B2B;
+      --Tl: rgba(43, 43, 43, .10);
       --I: #0EA5E9;
       --Il: rgba(14, 165, 233, .10);
-      --A: #C7C7CC;
-      --Al: rgba(148, 210, 189, .10);
+      --A: #9A9A9A;
+      --Al: rgba(154, 154, 154, .10);
 
       /* Surfaces — cooler neutral “desk” */
-      --bg: #F2F2F4;
+      --bg: #EEF2F7;
       --sur: #FFFFFF;
-      --sur2: #FAFAFA;
+      --sur2: #F6F9FC;
       --sur3: #EFF3F8;
       --bdr: #E3E9F1;
       --bdr2: #C8D6E3;
@@ -173,23 +191,56 @@
 ══════════════════════════════════════════════════════════════════════ */
     .scr {
       display: none;
+      position: fixed;
+      inset: 0;
       width: 100%;
       max-width: 100vw;
       height: 100vh;
+      height: 100svh;
       overflow: hidden;
+      z-index: 0;
     }
 
     .scr.on {
       display: flex;
       align-items: center;
       justify-content: center;
-      animation: fadein .3s ease forwards;
+      z-index: 1;
+    }
+
+    #sLogin.on {
+      z-index: 10; /* login always on top when shown */
+    }
+
+    #sApp.on {
+      z-index: 1;
+    }
+
+    /* Hide bottom nav, overlays when login screen is active */
+    body:has(#sLogin.on) #mobNav,
+    body:has(#sLogin.on) .mob-nav,
+    body:has(#sLogin.on) #mobOv,
+    body:has(#sLogin.on) #sbOverlay,
+    body:has(#sLogin.on) #soOv,
+    body:has(#sLogin.on) #mOv,
+    body:has(#sLogin.on) #ntfPanel,
+    body:has(#sLogin.on) #fkSplash {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+    /* Suppress login screen flash when valid session detected early */
+    html.has-session #sLogin {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
     }
 
     @keyframes fadein {
       from {
-        opacity:.1;
-        transform: translateY(8px);
+        opacity:.85;
+        transform: translateY(4px);
       }
 
       to {
@@ -269,8 +320,7 @@
       background:
         radial-gradient(ellipse at 80% 10%, rgba(10, 147, 150, .55) 0%, transparent 50%),
         radial-gradient(ellipse at 10% 90%, rgba(0, 95, 115, .4) 0%, transparent 60%),
-        linear-gradient(135deg, #001219 0%, #01353f 100%);
-      position: relative;
+        linear-gradient(135deg, #1A0505 0%, #2B0808 100%);
       overflow: hidden;
     }
 
@@ -286,7 +336,7 @@
     #sLogin::before {
       width: 550px;
       height: 550px;
-      background: radial-gradient(circle, rgba(10,147,150,.16) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(213,21,21,.16) 0%, transparent 70%);
       top: -180px;
       right: -180px;
       animation: float1 9s ease-in-out infinite;
@@ -334,6 +384,7 @@
         linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
       background-size: 48px 48px;
       pointer-events: none;
+      z-index: 0;
     }
 
     .lbox {
@@ -360,7 +411,7 @@
       position: absolute;
       inset: -2px;
       border-radius: 30px;
-      background: linear-gradient(135deg, rgba(10,147,150,.3) 0%, rgba(0,95,115,.2) 100%);
+      background: linear-gradient(135deg, rgba(213,21,21,.3) 0%, rgba(0,95,115,.2) 100%);
       z-index: -1;
       filter: blur(16px);
       opacity: .6;
@@ -440,6 +491,11 @@
       outline: none;
     }
 
+    /* Password field extra right padding for eye icon */
+    #fpass {
+      padding-right: 44px;
+    }
+
     .l-field input:focus {
       border-color: var(--P);
       box-shadow: 0 0 0 4px var(--Pl);
@@ -449,16 +505,43 @@
     .l-field .l-ico {
       position: absolute;
       left: 14px;
-      bottom: 13px;
+      bottom: 0;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
       color: var(--tx3);
       font-size: 14px;
       pointer-events: none;
       transition: color .2s;
     }
 
-    .l-field input:focus+.l-ico {
+    .l-field input:focus ~ .l-ico,
+    .l-field input:focus + .l-ico {
       color: var(--P);
     }
+
+    /* Eye toggle button for password */
+    .l-eye {
+      position: absolute;
+      right: 12px;
+      bottom: 0;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--tx3);
+      font-size: 14px;
+      padding: 0;
+      transition: color .2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .l-eye:hover { color: var(--P); }
 
     .l-btn {
       width: 100%;
@@ -4445,7 +4528,7 @@
       :root { --sbw: 264px; }
 
       .sb {
-        position: fixed; top: 0; left: 0; height: 100vh;
+        position: fixed; top: 0; left: 0; height: 100vh; height: 100svh;
         z-index: var(--z-sb);
         transform: translateX(-100%);
         transition: transform .25s cubic-bezier(.4,0,.2,1);
@@ -4944,8 +5027,8 @@
     @keyframes splashHide { to { opacity:0; transform:scale(1.04); } }
     @keyframes fkLogoSpin { to { transform:rotate(360deg); } }
     @keyframes fkBarSlide { 0%{transform:translateX(-100%)} 50%{transform:translateX(0%)} 100%{transform:translateX(110%)} }
-    @keyframes lbBrandIn { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
-    @keyframes lbSheetUp { from{transform:translateY(72px);opacity:0} to{transform:translateY(0);opacity:1} }
+    @keyframes lbBrandIn { from{opacity:.5;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes lbSheetUp { from{transform:translateY(48px);opacity:.7} to{transform:translateY(0);opacity:1} }
 
     /* ── NATIVE PERF ── */
     * { touch-action: manipulation; }
@@ -4956,6 +5039,8 @@
       .card{ transition:none!important; box-shadow:0 1px 3px rgba(0,0,0,.08)!important; }
       .modal-ov,.so-ov{ backdrop-filter:none!important; -webkit-backdrop-filter:none!important; }
       .mob-page{ animation-duration:.12s!important; }
+      /* Mobile: disable scr transition to prevent blank flash on slow devices */
+      .scr.on{ animation:none!important; opacity:1!important; transform:none!important; }
     }
 
     /* ── LOGIN MOBILE ── */
@@ -4969,7 +5054,8 @@
       #sLogin{
         flex-direction:column!important; align-items:stretch!important;
         justify-content:flex-end!important; padding:0!important;
-        background:linear-gradient(160deg,#003040 0%,#D8232A 45%,#0A9396 72%,#C7C7CC 100%)!important;
+        height:100svh!important; min-height:-webkit-fill-available;
+        background:linear-gradient(160deg,#1A0505 0%,#8B0000 35%,#D51515 65%,#E85555 100%)!important;
       }
       .l-mob-brand{ display:flex!important; }
       #lDeskLogo{ display:none!important; }
@@ -4991,6 +5077,8 @@
       .l-sub{ font-size:13px!important; margin-bottom:18px!important; }
       .l-field{ margin-bottom:11px!important; }
       .l-field input{ font-size:16px!important; min-height:52px!important; border-radius:14px!important; }
+      .l-field .l-ico{ height:52px!important; }
+      .l-eye{ height:52px!important; }
       .l-btn{ min-height:54px!important; font-size:16px!important; border-radius:14px!important; }
     }
     @media(min-width:641px){
@@ -5018,10 +5106,10 @@
     }
     /* ── Mobile card hover / press ── */
     @keyframes mobFadeUp {
-      from { opacity:.1; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from { opacity: .9; transform: translateY(5px); }
+      to   { opacity: 1;  transform: none; }
     }
-    .mob-page { animation: mobFadeUp .2s cubic-bezier(.4,0,.2,1) forwards; }
+    .mob-page { animation: mobFadeUp .15s cubic-bezier(.4,0,.2,1) forwards; }
     @keyframes sheetUp {
       from { transform: translateY(100%); opacity:.1; }
       to   { transform: translateY(0); opacity: 1; }
@@ -5120,7 +5208,7 @@
       box-shadow: 2px 0 8px rgba(0,95,115,.3);
     }
     /* Nav icon glow on active */
-    .nv.on i { color: var(--Pd); filter: drop-shadow(0 0 4px rgba(10,147,150,.4)); }
+    .nv.on i { color: var(--Pd); filter: drop-shadow(0 0 4px rgba(213,21,21,.4)); }
 
     /* User profile card in sidebar */
     .sb-prof {
@@ -5240,7 +5328,7 @@
     .btn {
       background: linear-gradient(135deg, var(--P) 0%, var(--Pd) 100%);
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,95,115,.22);
+      box-shadow: 0 2px 8px rgba(213,21,21,.22);
       transition: all .18s cubic-bezier(.34,1.2,.64,1);
     }
     .btn:hover {
@@ -5263,7 +5351,7 @@
     .btn-red    { background: linear-gradient(135deg, #E03131, #F03E3E); box-shadow: 0 2px 8px rgba(224,49,49,.25); }
     .btn-orange { background: linear-gradient(135deg, #D97706, #F59E0B); box-shadow: 0 2px 8px rgba(217,119,6,.25); }
     .btn-violet { background: linear-gradient(135deg, #7048E8, #9061F9); box-shadow: 0 2px 8px rgba(112,72,232,.25); }
-    .btn-teal   { background: linear-gradient(135deg, #B3141B, #14B8A6); box-shadow: 0 2px 8px rgba(13,148,136,.25); }
+    .btn-teal   { background: linear-gradient(135deg, #D51515, #B01010); box-shadow: 0 2px 8px rgba(213,21,21,.25); }
 
     /* Login button */
     .l-btn {
@@ -5380,7 +5468,7 @@
       transform: translateY(-50%);
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: rgba(10,147,150,.18);
+      background: rgba(213,21,21,.18);
       animation: skelDotFloat 2.4s ease-in-out infinite;
       pointer-events: none;
     }
@@ -5420,7 +5508,7 @@
       top: 70px; left: 18px;
       width: 60px; height: 8px;
       border-radius: 4px;
-      background: rgba(0,95,115,.06);
+      background: rgba(213,21,21,.06);
       animation: skelIconPulse 1.8s ease-in-out infinite .3s;
     }
     @keyframes skelIconPulse {
@@ -5547,7 +5635,7 @@
     body.dark .kpi { border-color: rgba(51,65,85,.6); }
     body.dark .topbar { box-shadow: 0 1px 0 rgba(0,0,0,.3), 0 4px 20px rgba(0,0,0,.2); }
     body.dark .nv:hover { background: linear-gradient(90deg, rgba(0,95,115,.15) 0%, transparent 100%); }
-    body.dark .nv.on   { background: linear-gradient(90deg, rgba(0,95,115,.22) 0%, rgba(0,95,115,.06) 100%); }
+    body.dark .nv.on   { background: linear-gradient(90deg, rgba(213,21,21,.22) 0%, rgba(213,21,21,.06) 100%); }
     body.dark #toast   { box-shadow: 0 8px 40px rgba(0,0,0,.4) !important; }
 
     /* ── Topbar title transition ── */
@@ -5610,7 +5698,7 @@
 
     /* ── Bottom nav pill hover spring ── */
     .mob-nav-item:hover .mob-nav-pill {
-      background: rgba(0,95,115,.06);
+      background: rgba(213,21,21,.06);
       transform: scale(1.08);
     }
 
@@ -6240,7 +6328,7 @@
     ══════════════════════════════════════════════════════════════════════ */
 
     /* ── Login screen: smooth orchestrated entrance ─────────────────────── */
-    @keyframes loginBoxIn  { from{opacity:.3;transform:translateY(24px) scale(.96)} to{opacity:1;transform:none} }
+    @keyframes loginBoxIn  { from{opacity:.8;transform:translateY(12px) scale(.98)} to{opacity:1;transform:none} }
     @keyframes loginFieldIn{ from{opacity:.2;transform:translateX(-10px)} to{opacity:1;transform:none} }
     @keyframes loginBtnIn  { from{opacity:.2;transform:translateY(8px) scale(.96)} to{opacity:1;transform:none} }
 
@@ -6708,7 +6796,7 @@
 
   
     /* ══════════════════════════════════════════════════════════════════════
-       MOBILE BOTTOM NAV — ISE-style, Isha Steels brand colors
+       MOBILE BOTTOM NAV — ISE brand colors
     ══════════════════════════════════════════════════════════════════════ */
     .mob-nav {
       display: none;
@@ -6767,7 +6855,7 @@
     }
     .mob-nav-item.active .mob-nav-pill {
       background: var(--Pl);
-      box-shadow: 0 2px 10px rgba(0,95,115,.18);
+      box-shadow: 0 2px 10px rgba(213,21,21,.18);
     }
     .mob-nav-item:hover .mob-nav-pill { background: var(--Pl); }
     .mob-nav-item:active i { transform: scale(.85) !important; }
@@ -6784,10 +6872,10 @@
 
     /* ── Mobile page transition ── */
     @keyframes mobFadeUp {
-      from { opacity: .3; transform: translateY(10px); }
+      from { opacity: .9; transform: translateY(5px); }
       to   { opacity: 1;  transform: none; }
     }
-    /* mob-page removed — was causing opacity:.3 blank on mobile */
+    /* mob-page animation kept but starts near-opaque so no blank flash */
 
     /* ══════════════════════════════════════════════════════════════════════
        @media (max-width: 640px) — Full mobile shell
@@ -6825,7 +6913,7 @@
 
       /* Sidebar: slide in from left */
       .sb {
-        position: fixed; top: 0; left: 0; height: 100vh;
+        position: fixed; top: 0; left: 0; height: 100vh; height: 100svh;
         z-index: var(--z-sb, 100);
         transform: translateX(-100%);
         transition: transform .26s cubic-bezier(.4,0,.2,1);
@@ -6981,20 +7069,22 @@
 </head>
 
 <body>
-  <div class="login-grid"></div>
 
   <!-- ═══════════════════════════════════════════════════════════
      LOGIN SCREEN
 ═══════════════════════════════════════════════════════════ -->
   <div class="scr on" id="sLogin">
+    <div class="login-grid"></div>
     <div class="l-mob-brand">
-      <img src="https://ishasteels.com/assets/images/logo.png" style="width:68px;height:68px;object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,.25))" onerror="this.style.display='none'">
-      <div style="color:#fff;font-size:22px;font-weight:900;margin-top:14px;letter-spacing:-.3px">ISE Staff Portal</div>
+      <div style="background:#fff;border-radius:20px;padding:12px 20px;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.18);margin-bottom:4px">
+        <img src="https://ishasteels.com/assets/images/logo.png" style="width:100px;height:44px;object-fit:contain;display:block" onerror="this.parentElement.innerHTML='<span style=\'font-size:22px;font-weight:900;color:#005F73;letter-spacing:-1px\'>ISE</span>'">
+      </div>
+      <div style="color:#fff;font-size:22px;font-weight:900;margin-top:16px;letter-spacing:-.3px">ISE Staff Portal</div>
       <div style="color:rgba(255,255,255,.75);font-size:13px;margin-top:5px">Your workplace, anywhere</div>
     </div>
     <div class="lbox">
       <div class="l-logo-wrap" id="lDeskLogo">
-        <img src="https://ishasteels.com/assets/images/logo.png" alt="Isha Steels Logo"
+        <img src="https://ishasteels.com/assets/images/logo.png" alt="ISE Logo"
           onerror="this.style.display='none';document.getElementById('lgFallback').style.display='flex'">
         <div class="l-logo-fallback" id="lgFallback" style="display:none">FK</div>
       </div>
@@ -7002,13 +7092,16 @@
       <div class="l-sub">Sign in to access your workspace</div>
       <div class="l-field">
         <label>Email Address</label>
-        <input type="email" id="femail" placeholder="you@Isha Steels.co.in" autocomplete="email" onkeydown="if(event.key==='Enter')document.getElementById('fpass').focus()">
-        <i class="fas fa-envelope l-ico"></i>
+        <input type="email" id="femail" placeholder="you@ishasteels.com" autocomplete="email" onkeydown="if(event.key==='Enter')document.getElementById('fpass').focus()">
+        <span class="l-ico"><i class="fas fa-envelope"></i></span>
       </div>
       <div class="l-field">
         <label>Password</label>
         <input type="password" id="fpass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')_doLogin()">
-        <i class="fas fa-lock l-ico"></i>
+        <span class="l-ico"><i class="fas fa-lock"></i></span>
+        <button type="button" class="l-eye" id="eyeToggle" onclick="(function(){var i=document.getElementById('fpass'),e=document.getElementById('eyeToggle').querySelector('i');i.type=i.type==='password'?'text':'password';e.className=i.type==='password'?'fas fa-eye':'fas fa-eye-slash';})()" aria-label="Toggle password visibility">
+          <i class="fas fa-eye"></i>
+        </button>
       </div>
       <button class="l-btn" id="btnLogin" onclick="_doLogin()">
         <i class="fas fa-sign-in-alt"></i> Sign In
@@ -7026,13 +7119,13 @@
 
   <!-- ── SPLASH LOADER — shown during getAllData, hidden once data arrives ── -->
   <div id="fkSplash" style="display:none;position:fixed;inset:0;z-index:9999;
-    background:linear-gradient(150deg,#D8232A 0%,#0A9396 55%,#C7C7CC 100%);
+    background:linear-gradient(150deg,#1A0505 0%,#8B0000 45%,#D51515 80%,#E85555 100%);
     flex-direction:column;align-items:center;justify-content:center;gap:0">
     <div style="animation:splashPop .5s cubic-bezier(.34,1.56,.64,1) both;display:flex;flex-direction:column;align-items:center;gap:20px">
       <div style="position:relative;width:92px;height:92px">
         <div style="position:absolute;inset:0;border-radius:50%;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.15)"></div>
-        <div style="position:absolute;inset:-5px;border-radius:50%;border:3.5px solid transparent;border-top-color:#0A9396;border-right-color:#0A9396;animation:fkLogoSpin .9s linear infinite"></div>
-        <img src="https://ishasteels.com/assets/images/logo.png" alt="Isha Steels" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:14px;border-radius:50%" onerror="this.style.display='none'">
+        <div style="position:absolute;inset:-5px;border-radius:50%;border:3.5px solid transparent;border-top-color:#D51515;border-right-color:#D51515;animation:fkLogoSpin .9s linear infinite"></div>
+        <img src="https://ishasteels.com/assets/images/logo.png" alt="ISE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:14px;border-radius:50%" onerror="this.style.display='none'">
       </div>
       <div style="color:#fff;font-size:22px;font-weight:900;letter-spacing:-.4px;text-align:center;
         text-shadow:0 2px 12px rgba(0,0,0,.2)">ISE Staff Portal</div>
@@ -7045,7 +7138,7 @@
       </div>
     </div>
     <div style="position:absolute;bottom:40px;color:rgba(255,255,255,.45);font-size:11px">
-      © 2026 Isha Steels &nbsp;·&nbsp; All rights reserved
+      © 2026 ISE &nbsp;·&nbsp; All rights reserved
     </div>
   </div>
 
@@ -7062,11 +7155,11 @@
     <aside class="sb" id="sb">
       <div class="sb-hd">
         <div class="sb-brand">
-          <img src="https://ishasteels.com/assets/images/logo.png" alt="Isha Steels"
+          <img src="https://ishasteels.com/assets/images/logo.png" alt="ISE"
             onerror="this.style.display='none'">
           <div>
-            <div class="sb-brand-txt">Isha Steels</div>
-            <div class="sb-brand-ver">Portal v1.0</div>
+            <div class="sb-brand-txt">ISE</div>
+            <div class="sb-brand-ver">Portal v3.0</div>
           </div>
         </div>
         <div class="sb-prof" onclick="_loadV('profile')">
@@ -7075,8 +7168,8 @@
             <div class="online-dot"></div>
           </div>
           <div class="sb-prof-info">
-            <div class="sb-name" id="sbName">Loading...</div>
-            <div class="sb-role" id="sbRole">—</div>
+            <div class="sb-name" id="sbName">ISE Staff</div>
+            <div class="sb-role" id="sbRole">Staff</div>
           </div>
           <i class="fas fa-chevron-right" style="font-size:10px;color:#475569;margin-left:auto;flex-shrink:0"></i>
         </div>
@@ -7156,7 +7249,7 @@
 
       <div class="sb-ft">
         <div class="sb-ft-txt">ISE Staff Portal</div>
-        <div class="sb-ft-copy">&copy; 2026 Isha Steels. All rights reserved.</div>
+        <div class="sb-ft-copy">&copy; 2026 Isha Steels Enterprises. All rights reserved.</div>
       </div>
     </aside>
 
@@ -7883,21 +7976,30 @@
     ══════════════════════════════════════════════════════════ */
     function _soShow() {
       try{
-        var nm=(_U&&_U.name)||'User', rl=(_U&&_U.role?_U.role+' · '+(_U.dept||''):'Staff');
+        var sbNm = document.getElementById('sbName');
+        var sbRl = document.getElementById('sbRole');
+        var nm = (_U&&_U.name&&_U.name!=='User'&&_U.name!=='Staff'&&_U.name.trim()!=='')?_U.name:(sbNm&&sbNm.textContent&&sbNm.textContent!=='ISE Staff'?sbNm.textContent:'');
+        var rl = (_U&&_U.role)?(_U.role+' · '+(_U.dept||'')):(sbRl&&sbRl.textContent?sbRl.textContent:'Staff');
+        if(!nm||nm.trim()==='') nm = 'Staff Member';
         var n=document.getElementById('soUserName'),r=document.getElementById('soUserDept');
         if(n)n.textContent=nm; if(r)r.textContent=rl;
       }catch(e){}
-      document.getElementById('soOv').classList.add('on');
+      var soEl = document.getElementById('soOv');
+      soEl.style.display = ''; // reset inline style set by _signOut
+      soEl.classList.add('on');
       document.body.style.overflow='hidden';
     }
     function _soHide() {
-      document.getElementById('soOv').classList.remove('on');
+      var soEl = document.getElementById('soOv');
+      soEl.classList.remove('on');
+      soEl.style.display = 'none';
       document.body.style.overflow='';
     }
     function _signOut() {
       try{ _clearSession(); localStorage.removeItem('fk_session_v2'); sessionStorage.clear(); }catch(e){}
       _U=null; _TOKEN=null;
       window._fkLoaded=false;
+      document.documentElement.classList.remove('has-session');
       try{
         if(window._autoRefreshTimer) clearInterval(window._autoRefreshTimer);
         if(window._refreshTimer) clearInterval(window._refreshTimer);
@@ -7909,18 +8011,24 @@
         var tip=document.getElementById('_fkTip'); if(tip)tip.remove();
       }catch(e){}
       var sApp=document.getElementById('sApp'), sLogin=document.getElementById('sLogin'), soOv=document.getElementById('soOv');
-      if(soOv)soOv.classList.remove('on');
+      if(soOv){ soOv.classList.remove('on'); soOv.style.display='none'; }
       document.body.style.overflow='';
       if(sApp){
         sApp.classList.remove('on');
         // Clear content area so no stale UI shows next login
         var ct=document.getElementById('content'); if(ct)ct.innerHTML='';
       }
-      if(sLogin){sLogin.classList.add('on');sLogin.style.display='';}
+      if(sLogin){sLogin.classList.remove('pre-hidden');sLogin.classList.add('on');sLogin.style.display='';}
       var mn=document.getElementById('mobNav'); if(mn)mn.style.display='none';
+      // Reset sidebar to defaults for next login
+      try{
+        var sbn=document.getElementById('sbName'),sbr=document.getElementById('sbRole'),sbi=document.getElementById('sbAvaInitials');
+        if(sbn)sbn.textContent='ISE Staff'; if(sbr)sbr.textContent='Staff'; if(sbi)sbi.textContent='?';
+      }catch(e){}
       setTimeout(function(){
         var em=document.getElementById('femail'),pw=document.getElementById('fpass'),er=document.getElementById('loginErr');
-        if(em)em.value=''; if(pw)pw.value=''; if(er)er.textContent='';
+        if(em)em.value=''; if(pw)pw.value=''; if(er){er.textContent='';er.classList.remove('on');}
+        if(em)em.focus();
       },100);
     }
 
@@ -8328,8 +8436,10 @@ function _gasX(fn, args, timeout, onOk, onErr) {
     function _bootApp() {
       _safeU(); // ensure _U has valid values before any access
       // Switch screens
-      document.getElementById('sLogin').classList.remove('on');
-      document.getElementById('sApp').classList.add('on');
+      var _sL=document.getElementById('sLogin'), _sA=document.getElementById('sApp');
+      if(_sL){_sL.classList.remove('on');_sL.style.display='none';}
+      if(_sA){_sA.classList.add('on');}
+      document.documentElement.classList.remove('has-session'); // clear early-hide class
       window._fkLoaded = false;
       var _mn=document.getElementById('mobNav'); if(_mn)_mn.style.display='';
       // Show animated skeleton IMMEDIATELY so user sees activity
@@ -8338,7 +8448,7 @@ function _gasX(fn, args, timeout, onOk, onErr) {
         c0.innerHTML = _skelKpi(4) + _skel(3);
       }
 
-      // Show the Isha Steels splash while getAllData loads
+      // Show the ISE splash while getAllData loads
       var splash = document.getElementById('fkSplash');
       if (splash) splash.style.display = 'flex';
 
@@ -8365,7 +8475,7 @@ function _gasX(fn, args, timeout, onOk, onErr) {
             ct.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:65vh;padding:24px;text-align:center">'+
               '<div style="position:relative;width:88px;height:88px;margin-bottom:22px">'+
               '<div style="position:absolute;inset:0;border-radius:50%;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.12)"></div>'+
-              '<div style="position:absolute;inset:-5px;border-radius:50%;border:3.5px solid transparent;border-top-color:#0A9396;border-right-color:#0A9396;animation:fkLogoSpin .9s linear infinite"></div>'+
+              '<div style="position:absolute;inset:-5px;border-radius:50%;border:3.5px solid transparent;border-top-color:#D51515;border-right-color:#D51515;animation:fkLogoSpin .9s linear infinite"></div>'+
               '<img src="https://ishasteels.com/assets/images/logo.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:13px;border-radius:50%" onerror="this.style.display=\'none\'">'+
               '</div>'+
               '<div style="font-size:16px;font-weight:800;color:var(--tx);margin-bottom:6px">Loading your workspace...</div>'+
@@ -8382,15 +8492,17 @@ function _gasX(fn, args, timeout, onOk, onErr) {
       var _su=_safeU(); var initials = _initials(_su.name);
       var avaEl    = document.getElementById('sbAva');
       var initEl   = document.getElementById('sbAvaInitials');
-      if (_U.photo) {
+      if (_U.photo && avaEl) {
         avaEl.innerHTML = '<img src="' + _su.photo + '" alt="' + _esc(_su.name) + '" onerror="this.outerHTML=\'' + initials + '\'">' +
           '<div class="online-dot"></div>';
       } else {
-        if (initEl) initEl.textContent = initials;
+        if (initEl) initEl.textContent = initials || '?';
       }
 
-      document.getElementById('sbName').textContent = _su.name || 'User';
-      document.getElementById('sbRole').textContent = (_su.role||'STAFF')+' · '+(_su.dept || '');
+      var sbNEl = document.getElementById('sbName');
+      var sbREl = document.getElementById('sbRole');
+      if(sbNEl) sbNEl.textContent = _su.name || 'Staff';
+      if(sbREl) sbREl.textContent = (_su.role||'STAFF')+' · '+(_su.dept || '');
 
       var _mA=document.getElementById('mbn-attend'),_nA=document.getElementById('nv-attend');
       if(_su.need_attendance===false){if(_mA)_mA.style.display='none';if(_nA)_nA.style.display='none';}
@@ -9138,13 +9250,35 @@ function _gasX(fn, args, timeout, onOk, onErr) {
       document.getElementById('content').innerHTML =
         // ── Hero greeting ──
         (mob
-          ? '<div style="background:linear-gradient(135deg,var(--P) 0%,var(--T) 100%);border-radius:22px;padding:20px 20px 40px;margin-bottom:-28px;margin:-14px -14px 0;position:relative;overflow:hidden">' +
-            '<div style="position:absolute;top:-30px;right:-30px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.08)"></div>' +
-            '<div style="position:absolute;bottom:-40px;left:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.06)"></div>' +
-            '<div style="color:rgba(255,255,255,.8);font-size:12.5px;font-weight:600;letter-spacing:.3px">' + today + '</div>' +
-            '<div style="color:#fff;font-size:22px;font-weight:900;margin-top:6px;letter-spacing:-.5px">' + greet + ', ' + _esc((_U&&_U.name?_U.name.split(' ')[0]:'There')) + ' 👋</div>' +
-            '<div style="color:rgba(255,255,255,.7);font-size:12px;margin-top:3px;font-weight:500">' + ((_U&&_U.role)||'Staff') + ' · ' + ((_U&&_U.dept)||'') + '</div>' +
-            '</div>'
+          ? (function(){
+              var firstName = _esc((_U&&_U.name?_U.name.split(' ')[0]:'There'));
+              var role = ((_U&&_U.role)||'STAFF');
+              var dept = (_U&&_U.dept)||'';
+              var greetIco = hr<12?'🌤️':hr<17?'☀️':'🌙';
+              return '<div style="background:linear-gradient(140deg,#1A0505 0%,var(--P) 40%,var(--Pd) 75%,#8B0000 100%);margin:-14px -12px 0;padding:22px 20px 46px;position:relative;overflow:hidden;border-radius:0 0 32px 32px">' +
+                '<div style="position:absolute;top:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.06)"></div>' +
+                '<div style="position:absolute;top:30px;right:20px;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.04)"></div>' +
+                '<div style="position:absolute;bottom:-30px;left:-20px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.05)"></div>' +
+                '<div style="position:relative;z-index:1">' +
+                  '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">' +
+                    '<div style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);border-radius:30px;padding:5px 13px">' +
+                      '<span style="width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block;box-shadow:0 0 8px #4ade80;flex-shrink:0"></span>' +
+                      '<span style="color:rgba(255,255,255,.92);font-size:11px;font-weight:700;letter-spacing:.4px;white-space:nowrap">' + today + '</span>' +
+                    '</div>' +
+                    '<span style="font-size:22px;line-height:1">' + greetIco + '</span>' +
+                  '</div>' +
+                  '<div style="font-size:12px;font-weight:500;color:rgba(255,255,255,.65);letter-spacing:.3px;margin-bottom:2px">' + greet + '</div>' +
+                  '<div style="color:#fff;font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1.1;margin-bottom:12px;text-shadow:0 2px 12px rgba(0,0,0,.15)">' + firstName + ' 👋</div>' +
+                  '<div style="display:flex;align-items:center;gap:8px">' +
+                    '<div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:5px 11px">' +
+                      '<i class="fas fa-briefcase" style="color:rgba(255,255,255,.75);font-size:10px"></i>' +
+                      '<span style="color:rgba(255,255,255,.9);font-size:11.5px;font-weight:800;letter-spacing:.4px">' + role + '</span>' +
+                    '</div>' +
+                    (dept ? '<div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:5px 11px"><i class="fas fa-building" style="color:rgba(255,255,255,.65);font-size:10px"></i><span style="color:rgba(255,255,255,.8);font-size:11.5px;font-weight:700;letter-spacing:.3px">' + _esc(dept) + '</span></div>' : '') +
+                  '</div>' +
+                '</div>' +
+              '</div>';
+            })()
           : '<div class="mod-head">' +
             '<div><div class="mod-title">' + greet + ', ' + _esc((_U&&_U.name?_U.name.split(' ')[0]:'There')) + ' 👋</div>' +
             '<div class="mod-sub">' + today + '</div></div>' +
@@ -9159,7 +9293,7 @@ function _gasX(fn, args, timeout, onOk, onErr) {
         ((_U && _U.need_attendance === false) ? '' :
         (mob
           ? '<div style="margin:0 -14px;padding:0 14px 16px;margin-top:-2px">' +
-            '<div class="att-punch-card" id="dashPunchCard" style="margin-top:28px;z-index:2;position:relative;box-shadow:0 8px 32px rgba(0,0,0,.15)">' +
+            '<div class="att-punch-card" id="dashPunchCard" style="margin-top:32px;z-index:2;position:relative;box-shadow:0 8px 32px rgba(0,0,0,.15)">' +
             '<div class="att-punch-info">' +
             '<div class="att-punch-title"><i class="fas fa-fingerprint" style="color:var(--P);margin-right:6px"></i>TODAY\'S ATTENDANCE</div>' +
             '<div class="att-punch-status" id="dashPunchStatus">Checking status...</div>' +
@@ -9193,7 +9327,7 @@ function _gasX(fn, args, timeout, onOk, onErr) {
         // Simple onclick only — no inline event handlers that break mobile parsing
         '<div style="display:grid;grid-template-columns:repeat('+(mob?'4':'4')+',1fr);gap:'+(mob?'10px':'12px')+';margin-bottom:20px" id="dashQuickAct">' +
         [
-          {ico:'fa-list-check',     lbl:'Tasks',    view:'check',  c1:'#0F766E',c2:'#14B8A6'},
+          {ico:'fa-list-check',     lbl:'Tasks',    view:'check',  c1:'#B01010',c2:'#D51515'},
           {ico:'fa-diagram-project',lbl:'Delegate', view:'deleg',  c1:'#7C3AED',c2:'#A78BFA'},
           {ico:'fa-user-clock',     lbl:'Attend',   view:'attend', c1:'#1D4ED8',c2:'#60A5FA'},
           {ico:'fa-umbrella-beach', lbl:'Leave',    view:'leave',  c1:'#DC2626',c2:'#F87171'},
@@ -12751,7 +12885,7 @@ function _loadSetupTasks() {
 
         '</div>' +
         '<div style="padding:14px 20px;border-top:1px solid var(--bdr)">' +
-        '<div style="font-size:10px;color:var(--tx3);font-weight:600">Isha Steels Portal v1.0 &nbsp;·&nbsp; &copy; 2026 Isha Steels</div>' +
+        '<div style="font-size:10px;color:var(--tx3);font-weight:600">ISE Portal v3.0 &nbsp;·&nbsp; &copy; 2026 ISE</div>' +
         '</div>';
 
       document.body.appendChild(panel);
@@ -13371,8 +13505,8 @@ function _loadSetupTasks() {
     ══════════════════════════════════════════════════════════ */
     function _avatarGradient(name) {
       var palette = [
-        ['#D8232A', '#0A9396'], ['#2F9E44', '#40C057'], ['#7048E8', '#9775FA'],
-        ['#D97706', '#F59E0B'], ['#E03131', '#F03E3E'], ['#B3141B', '#14B8A6'],
+        ['#D51515', '#B01010'], ['#2F9E44', '#40C057'], ['#7048E8', '#9775FA'],
+        ['#D97706', '#F59E0B'], ['#E03131', '#F03E3E'], ['#9A9A9A', '#6B6B6B'],
         ['#0EA5E9', '#38BDF8'], ['#DC2626', '#EF4444'], ['#7C3AED', '#8B5CF6']
       ];
       var idx = name ? name.charCodeAt(0) % palette.length : 0;
@@ -13700,7 +13834,7 @@ function _loadSetupTasks() {
        Stored in localStorage so they only show once
     ══════════════════════════════════════════════════════════ */
     var _tips = [
-      { id: 't1', title: 'Welcome to Isha Steels Portal!', body: 'Use the sidebar to navigate between modules. Your current section is highlighted in teal.', ico: 'fa-hand-wave' },
+      { id: 't1', title: 'Welcome to ISE Portal!', body: 'Use the sidebar to navigate between modules. Your current section is highlighted in teal.', ico: 'fa-hand-wave' },
       { id: 't2', title: 'Quick Search', body: 'Press ⌘K (Mac) or Ctrl+K (Windows) to open the global search and jump to any page or employee instantly.', ico: 'fa-magnifying-glass' },
       { id: 't3', title: 'Keyboard Shortcuts', body: 'Press ? anywhere in the app to see all available keyboard shortcuts.', ico: 'fa-keyboard' },
       { id: 't4', title: 'Dark Mode', body: 'Toggle dark mode using the moon icon in the top right corner. Your preference is saved automatically.', ico: 'fa-moon' }
@@ -13746,8 +13880,8 @@ function _loadSetupTasks() {
       // Show first onboarding tip 2 seconds after login (triggered from _bootApp)
       // _showNextTip is called from _bootApp after login
 
-      console.log('[Isha Steels Portal v1.0] Initialized. Ready for login.');
-      console.log('[Isha Steels Portal v1.0] Press ? for keyboard shortcuts, ⌘K for search.');
+      console.log('[ISE Portal v3.0] Initialized. Ready for login.');
+      console.log('[ISE Portal v3.0] Press ? for keyboard shortcuts, ⌘K for search.');
     }());
 
     /* ══════════════════════════════════════════════════════════════════════
@@ -17076,9 +17210,9 @@ function _loadSetupTasks() {
         document.body.classList.add('dense');
       }
 
-      console.log('[Isha Steels Portal v1.0] Initialized. Ready for login.');
-      console.log('[Isha Steels Portal v1.0] Press ? for keyboard shortcuts, ⌘K for search.');
-      console.log('[Isha Steels Portal v1.0] Navigation routes:', _navRoutes.length, 'views registered.');
+      console.log('[ISE Portal v3.0] Initialized. Ready for login.');
+      console.log('[ISE Portal v3.0] Press ? for keyboard shortcuts, ⌘K for search.');
+      console.log('[ISE Portal v3.0] Navigation routes:', _navRoutes.length, 'views registered.');
     }());
 
     /* ══════════════════════════════════════════════════════════════════════
@@ -19596,6 +19730,8 @@ function _deactivateTask(uid) {
         var mn=document.getElementById('mobNav'); if(mn)mn.style.display='none';
       }
       try {
+        // Remove early-session CSS class (will be re-confirmed below)
+        document.documentElement.classList.remove('has-session');
         var saved=_loadSession();
         var good=saved&&saved.user&&saved.user.name
           &&saved.user.name!=='User'&&saved.user.name!=='Staff'&&saved.user.name.trim()!=='';

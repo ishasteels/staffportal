@@ -1,6 +1,6 @@
 {
   "name": "ISE Staff Portal",
-  "short_name": "Isha Steels",
+  "short_name": "ISE App",
   "description": "ISE Staff Portal — Attendance, Tasks, Delegation & Analytics",
   "start_url": "./index.html?pwa=1",
   "display": "standalone",
